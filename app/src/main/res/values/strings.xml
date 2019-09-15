@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Gestione Ricevimenti</string>
+    <string name="title_activity_student_home_page_activity">StudentHomePageACtivity</string>
 </resources>
