@@ -7,9 +7,10 @@
     tools:context="com.example.gestioneRicevimenti.StudentHomePageActivity">
 
     <CalendarView
-        android:id="@+id/calendarView2"
+        android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="334dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
@@ -52,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView2"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
         app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

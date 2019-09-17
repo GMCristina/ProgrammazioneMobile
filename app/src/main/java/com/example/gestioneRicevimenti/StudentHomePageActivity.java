@@ -2,6 +2,7 @@ package com.example.gestioneRicevimenti;
 
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CalendarView;
 import android.widget.ListView;
 
 import com.example.gestioneRicevimenti.R;
@@ -29,6 +31,7 @@ import java.util.Iterator;
 public class StudentHomePageActivity extends AppCompatActivity {
 
     ListView list;
+    HttpURLConnection client = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,24 +61,32 @@ public class StudentHomePageActivity extends AppCompatActivity {
             }
         });
 
-        HttpURLConnection client = null;
-        try {
-            URL url = new URL("http://pmapp.altervista.org");
-            client = (HttpURLConnection) url.openConnection();
-            client.setRequestMethod("GET");
-            InputStream in = client.getInputStream();
-            String json_string = ReadResponse.readStream(in);
-            JSONObject json_data = convert2JSON(json_string);
-            fill_listview(json_data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally{
-            if (client!= null){
-                client.disconnect();
-            }
-        }
+        CalendarView calendar = findViewById(R.id.calendarView);
 
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                String data = "date=" + Integer.toString(year) + "-" + Integer.toString(month+1) + "-" + Integer.toString(dayOfMonth);
+                try {
+                    URL url = new URL("http://pmapp.altervista.org/elenco_ricevimenti.php?" + data + "&" + "id=1");
+                    client = (HttpURLConnection) url.openConnection();
+                    client.setRequestMethod("GET");
+                    client.setDoInput(true);
+                    InputStream in = client.getInputStream();
+                    String json_string = ReadResponse.readStream(in);
+                    JSONObject json_data = convert2JSON(json_string);
+                    fill_listview(json_data);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                finally{
+                    if (client!= null){
+                        client.disconnect();
+                    }
+                }
+
+            }
+        });
     }
 
     @Override
@@ -109,18 +120,20 @@ public class StudentHomePageActivity extends AppCompatActivity {
     private void fill_listview(JSONObject json_data){
         ArrayList<String> eventNameArray = new ArrayList<>();
         ArrayList<String> eventDateArray = new ArrayList<>();
-        Iterator<String> iter = json_data.keys();
-        while (iter.hasNext()) {
-            String key = iter.next();
-            try {
-                JSONObject value = json_data.getJSONObject(key);
-                eventNameArray.add(value.getString("nome"));
-                eventDateArray.add(value.getString("cognome"));
-            } catch (JSONException e) {
-                // Something went wrong!
+        if(json_data!=null) {
+            Iterator<String> iter = json_data.keys();
+            while (iter.hasNext()) {
+                String key = iter.next();
+                try {
+                    JSONObject value = json_data.getJSONObject(key);
+                    eventNameArray.add(value.getString("nome"));
+                    eventDateArray.add(value.getString("cognome"));
+                } catch (JSONException e) {
+                    // Something went wrong!
+                }
             }
         }
         CustomListAdapter listAdapter = new CustomListAdapter(this, eventNameArray, eventDateArray);
-        list.setAdapter(listAdapter);
+            list.setAdapter(listAdapter);
     }
 }
