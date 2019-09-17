@@ -45,6 +45,7 @@
         app:maxImageSize="26dp" />
 
     <ListView
+        android:id="@+id/eventList"
         android:layout_width="0dp"
         android:layout_height="267dp"
         app:layout_constraintBottom_toBottomOf="parent"
