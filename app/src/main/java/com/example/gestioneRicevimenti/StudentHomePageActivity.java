@@ -16,8 +16,6 @@ import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.ListView;
 
-import com.example.gestioneRicevimenti.R;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
