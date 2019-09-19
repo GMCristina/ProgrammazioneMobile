@@ -1,5 +1,8 @@
 package com.example.gestioneRicevimenti;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -34,6 +37,15 @@ public class StudentHomePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String file = getPackageName() + "login_file";
+        SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+        String idutente = sp.getString("id_utente", "no_id");
+        if (idutente.equals("no_id")) {
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
+
         setContentView(R.layout.activity_student_home_page_activity);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
