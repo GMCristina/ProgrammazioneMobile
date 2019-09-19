@@ -1,5 +1,6 @@
 package com.example.gestioneRicevimenti;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +10,9 @@ import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -34,6 +37,8 @@ public class StudentHomePageActivity extends AppCompatActivity {
 
     ListView list;
     HttpURLConnection client = null;
+    DownloadEvent downloadevent;
+    CustomListAdapter listAdapter;
 
 
     @Override
@@ -72,17 +77,34 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 }
             });
 
-            DownloadEvent downloadevent = new DownloadEvent();
+            final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout);
+            swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Log.i("REFRESH:","refresh");
+                    downloadevent = new DownloadEvent();
+                    downloadevent.execute(list);
+                    listAdapter.notifyDataSetChanged();
+                    swipe.setRefreshing(false);
+
+                }
+            });
+
+            downloadevent = new DownloadEvent();
             downloadevent.execute(list);
         }
     }
 
 
-
+    @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
        MenuInflater inflater = getMenuInflater();
        inflater.inflate(R.menu.home_menu,menu);
+        if ( menu instanceof MenuBuilder) {
+            MenuBuilder m = (MenuBuilder) menu;
+            m.setOptionalIconsVisible(true);
+        }
        return super.onCreateOptionsMenu(menu);
     }
 
@@ -97,6 +119,11 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.info : break;
+            case R.id.refresh :
+                downloadevent = new DownloadEvent();
+                downloadevent.execute(list);
+                break;
+
             default: Log.i ("MENU","Default switch item");
         }
         return true;
@@ -167,7 +194,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
                     }
                 }
             }
-            CustomListAdapter listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray);
+            listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray);
             list.setAdapter(listAdapter);
         }
     }

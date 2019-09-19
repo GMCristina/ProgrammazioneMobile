@@ -36,14 +36,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="26dp" />
 
-    <ListView
-        android:id="@+id/eventList"
-        android:layout_width="410dp"
-        android:layout_height="516dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+
+        <ListView
+            android:id="@+id/eventList"
+            android:layout_width="410dp"
+            android:layout_height="516dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.constraint.ConstraintLayout>
