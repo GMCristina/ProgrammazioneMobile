@@ -3,6 +3,7 @@ package com.example.gestioneRicevimenti;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -34,6 +35,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
     ListView list;
     HttpURLConnection client = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,60 +46,38 @@ public class StudentHomePageActivity extends AppCompatActivity {
         if (idutente.equals("no_id")) {
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
+        } else {
+
+            setContentView(R.layout.activity_student_home_page_activity);
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
+            FloatingActionButton fab = findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
+
+            list = findViewById(R.id.eventList);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                }
+            });
+
+            DownloadEvent downloadevent = new DownloadEvent();
+            downloadevent.execute(list);
         }
-
-        setContentView(R.layout.activity_student_home_page_activity);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        list = findViewById(R.id.eventList);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
-
-        CalendarView calendar = findViewById(R.id.calendarView);
-
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String data = "date=" + Integer.toString(year) + "-" + Integer.toString(month+1) + "-" + Integer.toString(dayOfMonth);
-                try {
-                    URL url = new URL("http://pmapp.altervista.org/elenco_ricevimenti.php?" + data + "&" + "id=1");
-                    client = (HttpURLConnection) url.openConnection();
-                    client.setRequestMethod("GET");
-                    client.setDoInput(true);
-                    InputStream in = client.getInputStream();
-                    String json_string = ReadResponse.readStream(in);
-                    JSONObject json_data = convert2JSON(json_string);
-                    fill_listview(json_data);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                finally{
-                    if (client!= null){
-                        client.disconnect();
-                    }
-                }
-
-            }
-        });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,41 +89,87 @@ public class StudentHomePageActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.logout : break;
+            case R.id.logout :
+                String file = getPackageName() + "login_file";
+                SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+                sp.edit().clear().apply();
+                Intent i = new Intent(this,LoginActivity.class);
+                startActivity(i);
+                break;
             case R.id.info : break;
             default: Log.i ("MENU","Default switch item");
         }
         return true;
     }
 
-    private JSONObject convert2JSON(String json_data){
-        JSONObject obj = null;
-        try {
-            obj = new JSONObject(json_data);
-            Log.d("My App", obj.toString());
-        } catch (Throwable t) {
-            Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
-        }
-        return obj;
-    }
+    private class DownloadEvent extends AsyncTask<ListView, Void, JSONObject> {
 
-    private void fill_listview(JSONObject json_data){
-        ArrayList<String> eventNameArray = new ArrayList<>();
-        ArrayList<String> eventDateArray = new ArrayList<>();
-        if(json_data!=null) {
-            Iterator<String> iter = json_data.keys();
-            while (iter.hasNext()) {
-                String key = iter.next();
+        ListView list;
+
+        private JSONObject convert2JSON(String json_data){
+            JSONObject obj = null;
+            try {
+                obj = new JSONObject(json_data);
+                Log.d("My App", obj.toString());
+            } catch (Throwable t) {
+                Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
+            }
+            return obj;
+        }
+
+        @Override
+        protected JSONObject doInBackground(ListView... listViews) {
+            HttpURLConnection client = null;
+            JSONObject json_data = convert2JSON("");
+            list = listViews[0];
+            String file = getPackageName() + "login_file";
+            SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+            String id = sp.getString("id_utente", null);
+            if(id != null){
                 try {
-                    JSONObject value = json_data.getJSONObject(key);
-                    eventNameArray.add(value.getString("nome"));
-                    eventDateArray.add(value.getString("cognome"));
-                } catch (JSONException e) {
-                    // Something went wrong!
+                    URL url = new URL("http://pmapp.altervista.org/elenco_ricevimenti.php?" + "id=" + id);
+                    client = (HttpURLConnection) url.openConnection();
+                    client.setRequestMethod("GET");
+                    client.setDoInput(true);
+                    InputStream in = client.getInputStream();
+                    String json_string = ReadResponse.readStream(in);
+                    json_data = convert2JSON(json_string);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    json_data = null;
+                }
+                finally{
+                    if (client!= null){
+                        client.disconnect();
+                    }
                 }
             }
+
+            return json_data;
         }
-        CustomListAdapter listAdapter = new CustomListAdapter(this, eventNameArray, eventDateArray);
+
+        @Override
+        protected void onPostExecute(JSONObject json_data) {
+            ArrayList<String> eventDateArray = new ArrayList<>();
+            ArrayList<String> eventNameArray = new ArrayList<>();
+            ArrayList<String> eventHoursArray = new ArrayList<>();
+            if(json_data!=null) {
+                Iterator<String> iter = json_data.keys();
+                while (iter.hasNext()) {
+                    String key = iter.next();
+                    try {
+                        JSONObject value = json_data.getJSONObject(key);
+                        eventDateArray.add(value.getString("giorno"));
+                        eventNameArray.add(value.getString("nome") + " " + value.getString("cognome"));
+                        eventHoursArray.add(value.getString("inizio") + " - " + value.getString("fine"));
+                    } catch (JSONException e) {
+                        // Something went wrong!
+                    }
+                }
+            }
+            CustomListAdapter listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray);
             list.setAdapter(listAdapter);
+        }
     }
+
 }

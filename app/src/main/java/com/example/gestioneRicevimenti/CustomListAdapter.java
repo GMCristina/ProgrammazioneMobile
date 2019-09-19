@@ -15,16 +15,22 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     private Activity context;
 
-    private ArrayList<String> eventName;
-
     private ArrayList<String> eventDate;
 
-    public CustomListAdapter(Activity context, ArrayList<String> event, ArrayList<String> date){
+    private ArrayList<String> eventName;
+
+    private ArrayList<String> eventHours;
+
+    private String previous = "";
+
+    public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours){
 
         super(context,R.layout.events_listview_layout, event);
         this.context = context;
-        this.eventName = event;
+
         this.eventDate = date;
+        this.eventName = event;
+        this.eventHours = hours;
     }
 
 
@@ -34,12 +40,21 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         View rowView=inflater.inflate(R.layout.events_listview_layout, null);
 
         //this code gets references to objects in the events_listview_layout.xml file
+        TextView separatorText = (TextView) rowView.findViewById(R.id.separator);
         TextView eventText = (TextView) rowView.findViewById(R.id.event);
         TextView oraText = (TextView) rowView.findViewById(R.id.ora);
 
         //this code sets the values of the objects to values from the arrays
+        separatorText.setText(eventDate.get(position));
         eventText.setText(eventName.get(position));
-        oraText.setText(eventDate.get(position));
+        oraText.setText(eventHours.get(position));
+
+        if(previous.equals(eventDate.get(position))){
+            separatorText.setVisibility(View.GONE);
+        }
+        previous = eventDate.get(position);
+
+
 
         return rowView;
 
