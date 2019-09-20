@@ -89,10 +89,18 @@ public class StudentHomePageActivity extends AppCompatActivity {
 
                 }
             });
-
-            downloadevent = new DownloadEvent();
-            downloadevent.execute(list);
+           // downloadevent = new DownloadEvent();
+           // downloadevent.execute(list);
         }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        downloadevent = new DownloadEvent();
+        downloadevent.execute(list);
+        Log.i("RESUME:","onresume");
     }
 
 
@@ -119,7 +127,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.info : break;
-            case R.id.refresh :
+            case R.id.swipeRefreshLayout:
                 downloadevent = new DownloadEvent();
                 downloadevent.execute(list);
                 break;
