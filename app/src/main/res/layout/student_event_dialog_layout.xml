@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center|fill_vertical"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/buttonElimina"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/table"
+        android:layout_alignStart="@id/table"
+        android:layout_alignLeft="@id/table"
+        android:layout_weight="1"
+        android:text="Elimina" />
+
+    <Button
+        android:id="@+id/buttonFine"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/buttonElimina"
+        android:layout_alignEnd="@id/table"
+        android:layout_marginLeft="6dp"
+        android:layout_toRightOf="@id/buttonElimina"
+        android:layout_weight="1"
+        android:text="Fine" />
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="113dp"
+                android:layout_height="wrap_content"
+                android:text="Docente:" />
+
+            <TextView
+                android:id="@+id/docente"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Domenico Ursino" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Corso:" />
+
+            <TextView
+                android:id="@+id/corso"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:text="Programmazione Mobile" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data:" />
+
+            <TextView
+                android:id="@+id/data"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:text="18-09-2019" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inizio:" />
+
+            <TextView
+                android:id="@+id/inizio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="16:30" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fine :" />
+
+            <TextView
+                android:id="@+id/fine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="17:00" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oggetto:" />
+
+            <TextView
+                android:id="@+id/oggetto"
+                android:layout_width="118dp"
+                android:layout_height="wrap_content"
+                android:lines="3"
+                android:text="Aiuto con Android Studio" />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

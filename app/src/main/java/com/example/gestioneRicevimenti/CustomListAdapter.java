@@ -21,9 +21,11 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     private ArrayList<String> eventHours;
 
+    private ArrayList<String> eventId;
+
     private String previous = "";
 
-    public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours){
+    public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours, ArrayList<String> id){
 
         super(context,R.layout.events_listview_layout, event);
         this.context = context;
@@ -31,6 +33,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         this.eventDate = date;
         this.eventName = event;
         this.eventHours = hours;
+        this.eventId = id;
     }
 
 
@@ -58,5 +61,10 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
         return rowView;
 
+    }
+
+    public String getOggetto(int position) {
+        String st = eventId.get(position);
+        return st;
     }
 }

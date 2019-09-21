@@ -1,6 +1,7 @@
 package com.example.gestioneRicevimenti;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +20,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.ListView;
@@ -39,6 +43,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
     HttpURLConnection client = null;
     DownloadEvent downloadevent;
     CustomListAdapter listAdapter;
+    StudentEventDialog sed;
 
 
     @Override
@@ -70,12 +75,20 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 }
             });
 
+            sed = new StudentEventDialog(this);
             list = findViewById(R.id.eventList);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String id = listAdapter.getItem(i);
+                    sed.dataShow(id);
+                    Window w = sed.getWindow();
+                    w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                 }
             });
+
+
+
 
             final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout);
             swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -89,8 +102,6 @@ public class StudentHomePageActivity extends AppCompatActivity {
 
                 }
             });
-           // downloadevent = new DownloadEvent();
-           // downloadevent.execute(list);
         }
 
     }
@@ -188,6 +199,8 @@ public class StudentHomePageActivity extends AppCompatActivity {
             ArrayList<String> eventDateArray = new ArrayList<>();
             ArrayList<String> eventNameArray = new ArrayList<>();
             ArrayList<String> eventHoursArray = new ArrayList<>();
+            ArrayList<String> eventIdArray = new ArrayList<>();
+
             if(json_data!=null) {
                 Iterator<String> iter = json_data.keys();
                 while (iter.hasNext()) {
@@ -197,12 +210,13 @@ public class StudentHomePageActivity extends AppCompatActivity {
                         eventDateArray.add(value.getString("giorno"));
                         eventNameArray.add(value.getString("nome") + " " + value.getString("cognome"));
                         eventHoursArray.add(value.getString("inizio") + " - " + value.getString("fine"));
+                        eventIdArray.add(value.getString("id_ricevimento"));
                     } catch (JSONException e) {
                         // Something went wrong!
                     }
                 }
             }
-            listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray);
+            listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray);
             list.setAdapter(listAdapter);
         }
     }
