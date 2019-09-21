@@ -3,6 +3,7 @@ package com.example.gestioneRicevimenti;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -57,28 +58,39 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        HttpURLConnection client = null;
         switch (v.getId()) {
             case R.id.buttonElimina:
-                //AlertDialog alertdialog = new AlertDialog.Builder(con);
-
-
-                try {
-                    URL url = new URL("http://pmapp.altervista.org/cancella_ricevimento.php?" + "id=" + id_ricevimento);
-                    client = (HttpURLConnection) url.openConnection();
-                    client.setRequestMethod("GET");
-                    client.setDoInput(true);
-                    InputStream in = client.getInputStream();
-                    String json_string = ReadResponse.readStream(in);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                finally{
-                    if (client!= null){
-                        client.disconnect();
+                AlertDialog.Builder adbuilder = new AlertDialog.Builder(con);
+                adbuilder.setTitle("Cancella Prenotazione");
+                adbuilder.setMessage("Confermi di voler cancellare definitivamente la prenotazione effettuata?");
+                adbuilder.setPositiveButton("Sì", new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        HttpURLConnection client = null;
+                        try {
+                            URL url = new URL("http://pmapp.altervista.org/cancella_ricevimento.php?" + "id=" + id_ricevimento);
+                            client = (HttpURLConnection) url.openConnection();
+                            client.setRequestMethod("GET");
+                            client.setDoInput(true);
+                            InputStream in = client.getInputStream();
+                            String json_string = ReadResponse.readStream(in);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        finally{
+                            if (client!= null){
+                                client.disconnect();
+                            }
+                        }
+                        dismiss();
                     }
-                }
-                dismiss();
+                });
+                adbuilder.setNegativeButton("No", new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog alertdialog = adbuilder.create();
                 break;
             case R.id.buttonFine:
                 dismiss();
