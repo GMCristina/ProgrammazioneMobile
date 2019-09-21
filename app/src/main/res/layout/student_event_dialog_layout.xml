@@ -16,7 +16,8 @@
         android:layout_alignStart="@id/table"
         android:layout_alignLeft="@id/table"
         android:layout_weight="1"
-        android:text="Elimina" />
+        android:text="Elimina"
+        android:textColor="@android:color/holo_red_light" />
 
     <Button
         android:id="@+id/buttonFine"
@@ -53,8 +54,7 @@
             <TextView
                 android:id="@+id/docente"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Domenico Ursino" />
+                android:layout_height="match_parent" />
         </TableRow>
 
         <TableRow
@@ -71,8 +71,7 @@
             <TextView
                 android:id="@+id/corso"
                 android:layout_width="119dp"
-                android:layout_height="wrap_content"
-                android:text="Programmazione Mobile" />
+                android:layout_height="wrap_content" />
 
         </TableRow>
 
@@ -90,8 +89,7 @@
             <TextView
                 android:id="@+id/data"
                 android:layout_width="114dp"
-                android:layout_height="wrap_content"
-                android:text="18-09-2019" />
+                android:layout_height="wrap_content" />
 
         </TableRow>
 
@@ -109,8 +107,7 @@
             <TextView
                 android:id="@+id/inizio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="16:30" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow
@@ -127,8 +124,7 @@
             <TextView
                 android:id="@+id/fine"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="17:00" />
+                android:layout_height="wrap_content" />
 
         </TableRow>
 
@@ -147,8 +143,7 @@
                 android:id="@+id/oggetto"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
-                android:lines="3"
-                android:text="Aiuto con Android Studio" />
+                android:lines="3" />
         </TableRow>
 
     </TableLayout>

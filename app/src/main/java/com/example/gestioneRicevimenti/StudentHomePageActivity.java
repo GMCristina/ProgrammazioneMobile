@@ -3,6 +3,7 @@ package com.example.gestioneRicevimenti;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -26,6 +27,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,12 +77,22 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 }
             });
 
-            sed = new StudentEventDialog(this);
+
+
             list = findViewById(R.id.eventList);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    String id = listAdapter.getItem(i);
+                    String id = listAdapter.getOggetto(i);
+                    sed = new StudentEventDialog(StudentHomePageActivity.this);
+                    sed.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            downloadevent = new DownloadEvent();
+                            downloadevent.execute(list);
+                            listAdapter.notifyDataSetChanged();
+                        }
+                    });
                     sed.dataShow(id);
                     Window w = sed.getWindow();
                     w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -94,7 +106,6 @@ public class StudentHomePageActivity extends AppCompatActivity {
             swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    Log.i("REFRESH:","refresh");
                     downloadevent = new DownloadEvent();
                     downloadevent.execute(list);
                     listAdapter.notifyDataSetChanged();
@@ -109,9 +120,9 @@ public class StudentHomePageActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.i("OnResume", "onresume");
         downloadevent = new DownloadEvent();
         downloadevent.execute(list);
-        Log.i("RESUME:","onresume");
     }
 
 
@@ -138,7 +149,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.info : break;
-            case R.id.swipeRefreshLayout:
+            case R.id.refresh:
                 downloadevent = new DownloadEvent();
                 downloadevent.execute(list);
                 break;
@@ -152,21 +163,12 @@ public class StudentHomePageActivity extends AppCompatActivity {
 
         ListView list;
 
-        private JSONObject convert2JSON(String json_data){
-            JSONObject obj = null;
-            try {
-                obj = new JSONObject(json_data);
-                Log.d("My App", obj.toString());
-            } catch (Throwable t) {
-                Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
-            }
-            return obj;
-        }
+
 
         @Override
         protected JSONObject doInBackground(ListView... listViews) {
             HttpURLConnection client = null;
-            JSONObject json_data = convert2JSON("");
+            JSONObject json_data = ReadResponse.convert2JSON("");
             list = listViews[0];
             String file = getPackageName() + "login_file";
             SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
@@ -179,7 +181,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
                     client.setDoInput(true);
                     InputStream in = client.getInputStream();
                     String json_string = ReadResponse.readStream(in);
-                    json_data = convert2JSON(json_string);
+                    json_data = ReadResponse.convert2JSON(json_string);
                 } catch (IOException e) {
                     e.printStackTrace();
                     json_data = null;
