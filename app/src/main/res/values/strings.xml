@@ -10,4 +10,14 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <string-array name="durataricevimento">
+        <item> 5 min </item>
+        <item> 10 min </item>
+        <item> 15 min </item>
+        <item> 30 min </item>
+        <item> 1 h </item>
+        <item> 2 h </item>
+    </string-array>
+
 </resources>

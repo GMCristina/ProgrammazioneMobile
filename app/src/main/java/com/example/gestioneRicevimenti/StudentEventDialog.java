@@ -91,6 +91,7 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
                     }
                 });
                 AlertDialog alertdialog = adbuilder.create();
+                alertdialog.show();
                 break;
             case R.id.buttonFine:
                 dismiss();
