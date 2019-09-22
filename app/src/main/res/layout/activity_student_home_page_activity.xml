@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
         <ListView
-            android:id="@+id/eventList"
+            android:id="@+id/slotList"
             android:layout_width="410dp"
             android:layout_height="516dp"
             app:layout_constraintBottom_toBottomOf="parent"

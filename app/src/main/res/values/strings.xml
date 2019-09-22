@@ -11,6 +11,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
+    <string name="title_activity_student_book_slot">StudentBookSlotActivity</string>
     <string-array name="durataricevimento">
         <item> 5 min </item>
         <item> 10 min </item>

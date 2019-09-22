@@ -1,7 +1,6 @@
 package com.example.gestioneRicevimenti;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,11 +8,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
@@ -24,11 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.CalendarView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,14 +66,14 @@ public class StudentHomePageActivity extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(StudentHomePageActivity.this, StudentNewEventActivity.class);
+                    Intent i = new Intent(StudentHomePageActivity.this, StudentBookSlotActivity.class);
                     startActivity(i);
                 }
             });
 
 
 
-            list = findViewById(R.id.eventList);
+            list = findViewById(R.id.slotList);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

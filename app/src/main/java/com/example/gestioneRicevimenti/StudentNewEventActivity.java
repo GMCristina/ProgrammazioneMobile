@@ -143,7 +143,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                 data = etdata.getText().toString();
                 inizio = etinizio.getText().toString();
                 oggetto = etoggetto.getText().toString();
-                
+
                 break;
             case R.id.btnannulla :
                 this.finish();
