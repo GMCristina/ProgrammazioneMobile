@@ -1,6 +1,7 @@
 package com.example.gestioneRicevimenti;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,10 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         spdocente = findViewById(R.id.spinnerdocente);
         spcorso = findViewById(R.id.spinnercorso);
         spdurata = findViewById(R.id.spinnerdurata);
+
+        Intent i = getIntent();
+        Bundle b = i.getBundleExtra("id");
+        docente = b.getString("id_docente");
 
        /* spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_row);
         spinnerAdapter.add("prova1");

@@ -10,24 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a42ba82d-be60-4a54-bcc8-bbd304e7bf97" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_student_book_slot.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/CustomListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/CustomListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_home_page_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_home_page_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -59,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2595">
-              <caret line="216" column="41" lean-forward="true" selection-start-line="195" selection-start-column="12" selection-end-line="216" selection-end-column="41" />
+            <state relative-caret-position="544">
+              <caret line="219" lean-forward="true" selection-start-line="219" selection-end-line="219" />
             </state>
           </provider>
         </entry>
@@ -68,22 +54,40 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="187" column="17" lean-forward="true" selection-start-line="187" selection-start-column="17" selection-end-line="187" selection-end-column="17" />
+            <state relative-caret-position="276">
+              <caret line="160" selection-start-line="160" selection-end-line="160" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1479#1732#0" expanded="true" />
-                <element signature="e#1731#1732#0" expanded="true" />
+                <element signature="e#1515#1984#0" expanded="true" />
+                <element signature="e#1983#1984#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/CustomListAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="52" column="55" lean-forward="true" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/events_listview_layout.xml">
+          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2423">
-              <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
+            <state relative-caret-position="457">
+              <caret line="78" column="50" lean-forward="true" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -110,12 +114,17 @@
       <find>get</find>
       <find>TextView</find>
       <find>StudentEventDialog</find>
+      <find>eventIdArray</find>
     </findStrings>
     <replaceStrings>
       <replace>eventHoursArray</replace>
       <replace>eventHours</replace>
       <replace>id_ricevimento</replace>
       <replace>.setText</replace>
+      <replace>eventIdRicevimentoArray</replace>
+      <replace>eventGiornoArray</replace>
+      <replace>eventInizioFineArray</replace>
+      <replace>eventIdProfessoreArray</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -133,7 +142,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/home_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_student_home_page_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/CustomListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ReadResponse.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentEventDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/student_event_dialog_layout.xml" />
@@ -142,11 +150,12 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/spinner_row.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_student_book_slot.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/CustomListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java" />
       </list>
     </option>
@@ -397,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569090308760</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Bozza activity con slot docente">
+      <created>1569154002473</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1569154002473</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -405,8 +421,8 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.23382173" />
-      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4988662" visible="true" weight="0.23382173" />
+      <window_info id="Structure" order="2" sideWeight="0.5011338" side_tool="true" visible="true" weight="0.23382173" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Designer" order="5" />
@@ -421,7 +437,7 @@
       <window_info anchor="bottom" id="Terminal" order="5" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50364375" side_tool="true" weight="0.31851852" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4993895" weight="0.32959184" />
-      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.49635628" visible="true" weight="0.31746033" />
+      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.49635628" weight="0.31746033" />
       <window_info anchor="bottom" id="Find" order="9" sideWeight="0.4981685" weight="0.32777777" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4993895" weight="0.32959184" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" weight="0.49392712" />
@@ -468,7 +484,26 @@
     <MESSAGE value="Lista eventi + task asincrono" />
     <MESSAGE value="Dialog dettagli eventi" />
     <MESSAGE value="Activity per richiesta nuovo ricevimento dello studente : layout e bozza di funzionamento" />
-    <option name="LAST_COMMIT_MESSAGE" value="Activity per richiesta nuovo ricevimento dello studente : layout e bozza di funzionamento" />
+    <MESSAGE value="Bozza activity con slot docente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bozza activity con slot docente" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java</url>
+          <line>177</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java</url>
+          <line>154</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_student_home_page_activity.xml">
@@ -487,10 +522,6 @@
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/widget/ListView.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/events_listview_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -533,16 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/CustomListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/os/AsyncTask.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/home_menu.xml">
       <provider editor-type-id="text-editor">
@@ -558,10 +579,6 @@
           <caret line="79" column="48" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/calendar.xml">
-      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/student_new_event.xml" />
@@ -583,22 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="2205">
-          <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_home_page_activity.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="26" column="3" lean-forward="true" selection-start-line="26" selection-start-column="3" selection-end-line="36" selection-end-column="34" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentEventDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="661">
@@ -608,14 +609,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="31" column="60" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -637,36 +630,78 @@
       </provider>
       <provider editor-type-id="android-manifest" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2205">
+          <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/calendar.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_home_page_activity.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="3" lean-forward="true" selection-start-line="26" selection-start-column="3" selection-end-line="36" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="31" column="60" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_student_book_slot.xml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="750">
           <caret line="50" column="51" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2423">
-          <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
+        <state relative-caret-position="544">
+          <caret line="219" lean-forward="true" selection-start-line="219" selection-end-line="219" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2595">
-          <caret line="216" column="41" lean-forward="true" selection-start-line="195" selection-start-column="12" selection-end-line="216" selection-end-column="41" />
+        <state relative-caret-position="457">
+          <caret line="78" column="50" lean-forward="true" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/events_listview_layout.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/CustomListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="52" column="55" lean-forward="true" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="187" column="17" lean-forward="true" selection-start-line="187" selection-start-column="17" selection-end-line="187" selection-end-column="17" />
+        <state relative-caret-position="276">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1479#1732#0" expanded="true" />
-            <element signature="e#1731#1732#0" expanded="true" />
+            <element signature="e#1515#1984#0" expanded="true" />
+            <element signature="e#1983#1984#0" expanded="true" />
           </folding>
         </state>
       </provider>

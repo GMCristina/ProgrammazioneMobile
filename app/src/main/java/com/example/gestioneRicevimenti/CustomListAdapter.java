@@ -49,7 +49,8 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
         //this code sets the values of the objects to values from the arrays
         separatorText.setText(eventDate.get(position));
-        eventText.setText(eventName.get(position));
+        if(eventName!=null)
+            eventText.setText(eventName.get(position));
         oraText.setText(eventHours.get(position));
 
         if(previous.equals(eventDate.get(position))){

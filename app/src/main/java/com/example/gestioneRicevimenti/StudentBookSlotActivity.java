@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,10 +32,12 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
     Spinner spdocente;
     ArrayAdapter <String> spinnerAdapter;
+
     ListView listslot;
     CustomListAdapter listAdapter;
 
-    String id_docente;
+    String id_docente = "";
+    ArrayList<String> id_professori = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +54,25 @@ public class StudentBookSlotActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent j = new Intent(StudentBookSlotActivity.this, StudentNewEventActivity.class);
-                startActivity(j);
+                if(!id_docente.equals("")) {
+                    Intent j = new Intent(StudentBookSlotActivity.this, StudentNewEventActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id_docente", id_docente);
+                    j.putExtra("id", b);
+                    startActivity(j);
+                }
             }
         });
 
-      //  DownloadSpinnerDocente downloadspinnerdocente = new DownloadSpinnerDocente ();
-      //  downloadspinnerdocente.execute(spdocente);
+        DownloadSpinnerDocente downloadspinnerdocente = new DownloadSpinnerDocente ();
+        downloadspinnerdocente.execute(spdocente);
 
         spdocente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                id_docente = id_professori.get(position);
+                DownloadSlot ds = new DownloadSlot();
+                ds.execute(listslot);
 
             }
 
@@ -70,8 +81,6 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private class DownloadSpinnerDocente extends AsyncTask< Spinner, Void, JSONObject> {
@@ -88,8 +97,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             String id_studente = sp.getString("id_utente", null);
             if(id_studente != null){
                 try {
-                    URL url = new URL("http://pmapp.altervista.org/elenco_docenti.php?" + "id=" + id_studente);
-                    // php per estrarre tutti i docenti dello studente
+                    URL url = new URL("http://pmapp.altervista.org/professori.php?" + "id_studente=" + id_studente);
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("GET");
                     client.setDoInput(true);
@@ -120,7 +128,8 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     String key = iter.next();
                     try {
                         JSONObject value = json_data.getJSONObject(key);
-                        spinnerDocenteArray.add(value.getString("nome") + value.getString("cognome"));
+                        id_professori.add(value.getString("id_professore"));
+                        spinnerDocenteArray.add(value.getString("nome") + " " + value.getString("cognome"));
                     } catch (JSONException e) {
                         // Something went wrong!
                     }
@@ -143,8 +152,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
             if(id_docente != null){
                 try {
-                    URL url = new URL("http://pmapp.altervista.org/elenco_slot.php?" + "id=" + id_docente);
-                    // php per estrarre tutti gli slot del docente
+                    URL url = new URL("http://pmapp.altervista.org/ricevimenti_liberi.php?" + "id_professore=" + id_docente);
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("GET");
                     client.setDoInput(true);
@@ -167,10 +175,10 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json_data) {
-            ArrayList<String> eventDateArray = new ArrayList<>();
-            ArrayList<String> eventNameArray = new ArrayList<>();
-            ArrayList<String> eventHoursArray = new ArrayList<>();
-            ArrayList<String> eventIdArray = new ArrayList<>();
+            ArrayList<String> eventIdRicevimentoArray = new ArrayList<>();
+            ArrayList<String> eventGiornoArray = new ArrayList<>();
+            ArrayList<String> eventInizioFineArray = new ArrayList<>();
+            ArrayList<String> eventIdProfessoreArray = new ArrayList<>();
 
             if(json_data!=null) {
                 Iterator<String> iter = json_data.keys();
@@ -178,16 +186,16 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     String key = iter.next();
                     try {
                         JSONObject value = json_data.getJSONObject(key);
-                        eventDateArray.add(value.getString("giorno"));
-                        eventNameArray.add(value.getString("nome") + " " + value.getString("cognome"));
-                        eventHoursArray.add(value.getString("inizio") + " - " + value.getString("fine"));
-                        eventIdArray.add(value.getString("id_ricevimento"));
+                        eventIdRicevimentoArray.add(value.getString("id_ricevimento"));
+                        eventIdProfessoreArray.add(value.getString("id_professore"));
+                        eventGiornoArray.add(value.getString("giorno"));
+                        eventInizioFineArray.add(value.getString("inizio") + " - " + value.getString("fine"));
                     } catch (JSONException e) {
                         // Something went wrong!
                     }
                 }
             }
-            listAdapter = new CustomListAdapter(StudentBookSlotActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray);
+            listAdapter = new CustomListAdapter(StudentBookSlotActivity.this,   eventGiornoArray, null, eventInizioFineArray, eventIdProfessoreArray);
             list.setAdapter(listAdapter);
         }
     }
