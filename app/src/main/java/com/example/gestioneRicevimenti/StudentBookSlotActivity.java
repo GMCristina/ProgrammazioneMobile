@@ -38,6 +38,9 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
     String id_docente = "";
     ArrayList<String> id_professori = new ArrayList<>();
+    ArrayList<String> spinnerDocenteArray = new ArrayList<>();
+
+    String docente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     Intent j = new Intent(StudentBookSlotActivity.this, StudentNewEventActivity.class);
                     Bundle b = new Bundle();
                     b.putString("id_docente", id_docente);
+                    b.putString("docente", docente);
                     j.putExtra("id", b);
                     startActivity(j);
                 }
@@ -71,6 +75,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 id_docente = id_professori.get(position);
+                docente = spinnerDocenteArray.get(position);
                 DownloadSlot ds = new DownloadSlot();
                 ds.execute(listslot);
 
@@ -120,7 +125,6 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json_data) {
-            ArrayList<String> spinnerDocenteArray = new ArrayList<>();
 
             if(json_data!=null) {
                 Iterator<String> iter = json_data.keys();

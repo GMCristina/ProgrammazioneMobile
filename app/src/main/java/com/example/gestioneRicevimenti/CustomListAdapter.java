@@ -25,9 +25,12 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     private String previous = "";
 
+    static boolean flag = false;
+
+
     public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours, ArrayList<String> id){
 
-        super(context,R.layout.events_listview_layout, event);
+        super(context,R.layout.events_listview_layout, date);
         this.context = context;
 
         this.eventDate = date;
@@ -41,6 +44,12 @@ public class CustomListAdapter extends ArrayAdapter<String> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.events_listview_layout, null);
+
+        if(flag){
+            flag = true;
+        }
+        flag = true;
+
 
         //this code gets references to objects in the events_listview_layout.xml file
         TextView separatorText = (TextView) rowView.findViewById(R.id.separator);

@@ -29,10 +29,10 @@ import java.util.Iterator;
 public class StudentNewEventActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArrayAdapter<String> spinnerAdapter;
-    Spinner spdocente;
     Spinner spcorso;
     Spinner spdurata;
 
+    String id_docente;
     String docente;
     String corso;
     String data;
@@ -59,53 +59,20 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         etinizio = findViewById(R.id.newinizio);
         etoggetto = findViewById(R.id.newoggetto);
 
-        spdocente = findViewById(R.id.spinnerdocente);
         spcorso = findViewById(R.id.spinnercorso);
         spdurata = findViewById(R.id.spinnerdurata);
 
+        TextView twDocente = findViewById(R.id.txtDocente);
+
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("id");
-        docente = b.getString("id_docente");
+        id_docente = b.getString("id_docente");
+        docente = b.getString("docente");
 
-       /* spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_row);
-        spinnerAdapter.add("prova1");
-        spinnerAdapter.add("prova2");
-        spinnerAdapter.add("prova3");
-        spcorso.setAdapter(spinnerAdapter);
+        twDocente.setText(docente);
+
+
         spcorso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                TextView item = view.findViewById(R.id.spinnerrow);
-                corso = item.getText().toString();
-                Log.i("Spinner:", corso);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                corso = "";
-            }
-        });
-
-
-
-        */
-       spdocente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               TextView item = view.findViewById(R.id.spinnerrow);
-               docente = item.getText().toString();
-
-             //  DownloadSpinnerData download_corso = new DownloadSpinnerData();
-             //  download_corso.execute(spcorso);
-           }
-
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
-
-           }
-       });
-
-       spcorso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                TextView item = view.findViewById(R.id.spinnerrow);
@@ -131,8 +98,8 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
             }
         });
 
-      // DownloadSpinnerData download_docenti = new DownloadSpinnerData();
-      // download_docenti.execute(spdocente);
+        DownloadSpinnerCorso download_docenti = new DownloadSpinnerCorso();
+        download_docenti.execute(spcorso);
 
 
 
@@ -156,7 +123,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         }
     }
 
-    private class DownloadSpinnerData extends AsyncTask< Spinner, Void, JSONObject> {
+    private class DownloadSpinnerCorso extends AsyncTask< Spinner, Void, JSONObject> {
 
         Spinner sp;
 
@@ -170,8 +137,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
             String id_studente = sp.getString("id_utente", null);
             if(id_studente != null){
                 try {
-                    URL url = new URL("http://pmapp.altervista.org/elenco_ricevimenti.php?" + "id=" + id_studente);
-                    // php per estrarre tutti i docenti dello studente
+                    URL url = new URL("http://pmapp.altervista.org/elenco_corsi_studente_docente.php?" + "id_studente=" + id_studente + "&id_professore=" + id_docente);
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("GET");
                     client.setDoInput(true);
@@ -202,7 +168,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                     String key = iter.next();
                     try {
                         JSONObject value = json_data.getJSONObject(key);
-                        spinnerDataArray.add(value.getString("spinner_data"));
+                        spinnerDataArray.add(value.getString("nome"));
                     } catch (JSONException e) {
                         // Something went wrong!
                     }
