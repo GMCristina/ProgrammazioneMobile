@@ -49,11 +49,12 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
     String durata;
     String oggetto;
 
-    TextView etdata;
     EditText etoggetto;
+    Button btndata;
 
     DatePickerDialog d;
     TimePicker tp;
+    boolean f = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,22 +66,28 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         btnrichiedi.setOnClickListener(this);
         btnannulla.setOnClickListener(this);
 
-        etdata = findViewById(R.id.newdata);
         etoggetto = findViewById(R.id.newoggetto);
 
+        btndata = findViewById(R.id.btndata);
         spcorso = findViewById(R.id.spinnercorso);
         spdurata = findViewById(R.id.spinnerdurata);
 
         TextView twDocente = findViewById(R.id.txtDocente);
-
         Calendar c = Calendar.getInstance();
-        etdata.setText(c.get(Calendar.DAY_OF_MONTH) + "/" + Integer.toString(c.get(Calendar.MONTH) + 1) + "/" + c.get(Calendar.YEAR));
+        btndata.setText(c.get(Calendar.DAY_OF_MONTH) + "/" + Integer.toString(c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.YEAR));
+        btndata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                d.show();
+            }
+        });
+
+
 
         d = new DatePickerDialog(StudentNewEventActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                etdata.setText(dayOfMonth + "/" + Integer.toString(month+1) + "/" + year);
-
+                btndata.setText(dayOfMonth + "/" + Integer.toString(month+1) + "/" + year);
             }
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
@@ -94,12 +101,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         tp = findViewById(R.id.timepicker);
         tp.setIs24HourView(true);
 
-        etdata.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                d.show();
-            }
-        });
+
 
         spcorso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
@@ -129,11 +131,6 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
 
         DownloadSpinnerCorso download_docenti = new DownloadSpinnerCorso();
         download_docenti.execute(spcorso);
-
-
-
-
-
     }
 
 
@@ -141,7 +138,6 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnrichiedi:
-                data = etdata.getText().toString();
                 oggetto = etoggetto.getText().toString();
 
                 break;
@@ -188,7 +184,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
 
         @Override
         protected void onPostExecute(JSONObject json_data) {
-            ArrayList<String> spinnerDataArray = new ArrayList<>();
+            ArrayList<String> spinnerCorsiArray = new ArrayList<>();
 
             if(json_data!=null) {
                 Iterator<String> iter = json_data.keys();
@@ -196,13 +192,13 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                     String key = iter.next();
                     try {
                         JSONObject value = json_data.getJSONObject(key);
-                        spinnerDataArray.add(value.getString("nome"));
+                        spinnerCorsiArray.add(value.getString("nome"));
                     } catch (JSONException e) {
                         // Something went wrong!
                     }
                 }
             }
-            spinnerAdapter = new ArrayAdapter<String>(StudentNewEventActivity.this, R.layout.spinner_row,spinnerDataArray);
+            spinnerAdapter = new ArrayAdapter<String>(StudentNewEventActivity.this, R.layout.spinner_row,spinnerCorsiArray);
             sp.setAdapter(spinnerAdapter);
         }
     }

@@ -61,17 +61,15 @@
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/newdata"
-                style="@style/Widget.AppCompat.TextView.SpinnerItem"
+            <Button
+                android:id="@+id/btndata"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="tocca"
+                android:drawableRight="@android:drawable/ic_menu_my_calendar"
                 android:textAlignment="textEnd"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="19dp"
-                android:textStyle="bold" />
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/textView2"
