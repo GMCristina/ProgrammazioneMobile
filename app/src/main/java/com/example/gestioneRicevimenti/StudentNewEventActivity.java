@@ -1,20 +1,26 @@
 package com.example.gestioneRicevimenti;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +29,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 public class StudentNewEventActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,10 +49,11 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
     String durata;
     String oggetto;
 
-    EditText etdata;
-    EditText etinizio;
+    TextView etdata;
     EditText etoggetto;
 
+    DatePickerDialog d;
+    TimePicker tp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +66,23 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         btnannulla.setOnClickListener(this);
 
         etdata = findViewById(R.id.newdata);
-        etinizio = findViewById(R.id.newinizio);
         etoggetto = findViewById(R.id.newoggetto);
 
         spcorso = findViewById(R.id.spinnercorso);
         spdurata = findViewById(R.id.spinnerdurata);
 
         TextView twDocente = findViewById(R.id.txtDocente);
+
+        Calendar c = Calendar.getInstance();
+        etdata.setText(c.get(Calendar.DAY_OF_MONTH) + "/" + Integer.toString(c.get(Calendar.MONTH) + 1) + "/" + c.get(Calendar.YEAR));
+
+        d = new DatePickerDialog(StudentNewEventActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                etdata.setText(dayOfMonth + "/" + Integer.toString(month+1) + "/" + year);
+
+            }
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
         Intent i = getIntent();
         Bundle b = i.getBundleExtra("id");
@@ -71,6 +91,15 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
 
         twDocente.setText(docente);
 
+        tp = findViewById(R.id.timepicker);
+        tp.setIs24HourView(true);
+
+        etdata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                d.show();
+            }
+        });
 
         spcorso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
@@ -113,7 +142,6 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         switch (v.getId()) {
             case R.id.btnrichiedi:
                 data = etdata.getText().toString();
-                inizio = etinizio.getText().toString();
                 oggetto = etoggetto.getText().toString();
 
                 break;

@@ -5,144 +5,162 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnrichiedi"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newtable"
-        android:layout_alignLeft="@id/newtable"
-        android:layout_marginTop="10dp"
-        android:text="Richiedi" />
+        android:layout_below="@id/bottoni">
 
-    <Button
-        android:id="@+id/btnannulla"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/newtable"
-        android:layout_alignTop="@id/btnrichiedi"
-        android:layout_alignRight="@id/newtable"
-        android:layout_centerHorizontal="false"
-        android:text="Annulla" />
-
-    <TableLayout
-        android:id="@+id/newtable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp">
-
-        <TableRow
+        <LinearLayout
+            android:id="@+id/newtable"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView22"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Docente :" />
+                android:layout_marginStart="5dp"
+                android:text="Docente :"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/txtDocente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="19dp" />
 
             <TextView
                 android:id="@+id/textView23"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Corso :" />
+                android:layout_marginStart="5dp"
+                android:text="Corso :"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
 
             <Spinner
                 android:id="@+id/spinnercorso"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textAlignment="gravity" />
 
             <TextView
                 android:id="@+id/textView24"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Data :" />
+                android:layout_marginStart="5dp"
+                android:text="Data :"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/newdata"
-                android:layout_width="wrap_content"
+                style="@style/Widget.AppCompat.TextView.SpinnerItem"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="gg/mm/aa"
-                android:inputType="date" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_marginEnd="5dp"
+                android:text="tocca"
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="19dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Inizio :" />
+                android:layout_marginStart="5dp"
+                android:text="Inizio :"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/newinizio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="hh:mm"
-                android:inputType="time" />
+            <TimePicker
+                android:id="@+id/timepicker"
+                android:layout_width="match_parent"
+                android:layout_height="97dp"
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:timePickerMode="spinner" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Durata :" />
+                android:layout_marginStart="5dp"
+                android:text="Durata :"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
 
             <Spinner
                 android:id="@+id/spinnerdurata"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/durataricevimento" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_marginEnd="5dp"
+                android:entries="@array/durataricevimento"
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="19dp" />
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Note :" />
+                android:layout_marginStart="5dp"
+                android:text="Note :"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/newoggetto"
-                android:layout_width="wrap_content"
+                style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Oggetto del ricevimento"
                 android:inputType="textMultiLine" />
 
-        </TableRow>
+        </LinearLayout>
+    </ScrollView>
 
-    </TableLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/bottoni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp">
+
+        <Button
+            android:id="@+id/btnannulla"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="Annulla"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/btnrichiedi"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnrichiedi"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:text="Richiedi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnannulla"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
 </RelativeLayout>

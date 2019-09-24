@@ -3,6 +3,10 @@
     android:id="@+id/spinnerrow"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:gravity="right"
+    android:padding="5dp"
+    android:textAlignment="gravity"
+    android:textColor="@android:color/darker_gray"
+    android:textSize="19dp">
 
 </TextView>
