@@ -9,11 +9,10 @@
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#BDBDBD"
+        android:background="#F3F3F3"
         android:text="Giorno"
         android:textColor="#000000"
         android:textSize="18sp"
-        android:textStyle="bold"
         tools:visibility="visible" />
 
     <TextView

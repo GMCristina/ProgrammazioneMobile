@@ -10,6 +10,7 @@
 
     <Button
         android:id="@+id/buttonElimina"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="106dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/table"
@@ -21,6 +22,7 @@
 
     <Button
         android:id="@+id/buttonFine"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="106dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/buttonElimina"

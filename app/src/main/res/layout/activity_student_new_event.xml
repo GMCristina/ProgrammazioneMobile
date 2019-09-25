@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:background="#F6F6F6"
                 android:text="Docente :"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
@@ -40,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:background="#F6F6F6"
                 android:text="Corso :"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
@@ -57,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:background="#F6F6F6"
                 android:text="Data :"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
@@ -76,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:background="#F6F6F6"
                 android:text="Inizio :"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
@@ -92,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:background="#F6F6F6"
                 android:text="Durata :"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
@@ -112,6 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:background="#F6F6F6"
                 android:text="Note :"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />

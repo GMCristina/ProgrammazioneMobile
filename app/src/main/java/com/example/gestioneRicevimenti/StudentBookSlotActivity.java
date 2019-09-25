@@ -13,13 +13,18 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -37,14 +42,23 @@ import java.util.Iterator;
 public class StudentBookSlotActivity extends AppCompatActivity {
 
     Spinner spdocente;
+
     ArrayAdapter <String> spinnerAdapter;
 
+
     ListView listslot;
-    CustomListAdapter listAdapter;
+    SlotListAdapter listAdapter;
 
     String id_docente = "";
+    String id_ricevimento;
+    String id_corso;
+    String id_studente;
+    String oggetto;
+
     ArrayList<String> id_professori = new ArrayList<>();
     ArrayList<String> spinnerDocenteArray = new ArrayList<>();
+    ArrayList<String> spinnerIdCorsiArray =new ArrayList<>();
+
 
     String docente;
 
@@ -59,27 +73,78 @@ public class StudentBookSlotActivity extends AppCompatActivity {
         spdocente = findViewById(R.id.spinnerdocente);
         listslot = findViewById(R.id.slotList);
 
+        String file = getPackageName() + "login_file";
+        SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+        id_studente = sp.getString("id_utente", null);
+
+
         listslot.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                id_ricevimento = listAdapter.getIdRicevimento(position);
+
                 AlertDialog.Builder adbuilder = new AlertDialog.Builder(StudentBookSlotActivity.this);
+                LayoutInflater in = StudentBookSlotActivity.this.getLayoutInflater();
+                final View dialogview = in.inflate(R.layout.book_slot_dialog_layout,null);
+                adbuilder.setView(dialogview);
+
                 adbuilder.setTitle("Prenota Slot");
                 adbuilder.setMessage("Confermi di voler prenotare lo slot selezionato?");
+                final Spinner sp = dialogview.findViewById(R.id.spinner_corso);
+                final EditText etOggetto = dialogview.findViewById(R.id.txtOggetto);
+
+                etOggetto.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) { //nb ogni volta che modifica ma onFocus non funziona
+                        oggetto = etOggetto.getText().toString();
+                    }
+                });
+
+
+                DownloadSpinnerCorso dsc = new DownloadSpinnerCorso ();
+                dsc.execute(sp);
+
+                sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        id_corso = spinnerIdCorsiArray.get(position);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+
                 adbuilder.setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Log.i("Dati:", id_studente + "," + id_ricevimento + "," + id_corso + "," + id_docente + "," + oggetto );
+
 
                     }
                 });
                 adbuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
                     }
                 });
                 AlertDialog alertdialog = adbuilder.create();
                 alertdialog.show();
-
             }
         });
 
@@ -179,9 +244,6 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             HttpURLConnection client = null;
             JSONObject json_data = ReadResponse.convert2JSON("");
             sp = spinners[0];
-            String file = getPackageName() + "login_file";
-            SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
-            String id_studente = sp.getString("id_utente", null);
             if(id_studente != null){
                 try {
                     URL url = new URL("http://pmapp.altervista.org/professori.php?" + "id_studente=" + id_studente);
@@ -264,7 +326,6 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             ArrayList<String> eventIdRicevimentoArray = new ArrayList<>();
             ArrayList<String> eventGiornoArray = new ArrayList<>();
             ArrayList<String> eventInizioFineArray = new ArrayList<>();
-            ArrayList<String> eventIdProfessoreArray = new ArrayList<>();
 
             if(json_data!=null) {
                 Iterator<String> iter = json_data.keys();
@@ -273,7 +334,6 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     try {
                         JSONObject value = json_data.getJSONObject(key);
                         eventIdRicevimentoArray.add(value.getString("id_ricevimento"));
-                        eventIdProfessoreArray.add(value.getString("id_professore"));
                         eventGiornoArray.add(value.getString("giorno"));
                         eventInizioFineArray.add(value.getString("inizio") + " - " + value.getString("fine"));
                     } catch (JSONException e) {
@@ -281,8 +341,107 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     }
                 }
             }
-            listAdapter = new CustomListAdapter(StudentBookSlotActivity.this,   eventGiornoArray, null, eventInizioFineArray, eventIdProfessoreArray);
+            listAdapter = new SlotListAdapter(StudentBookSlotActivity.this,   eventIdRicevimentoArray, eventGiornoArray, eventInizioFineArray);
             list.setAdapter(listAdapter);
+        }
+    }
+
+
+    private class DownloadSpinnerCorso extends AsyncTask< Spinner, Void, JSONObject> {
+
+        Spinner sp;
+
+        @Override
+        protected JSONObject doInBackground(Spinner... spinners) {
+            HttpURLConnection client = null;
+            JSONObject json_data = ReadResponse.convert2JSON("");
+            sp = spinners[0];
+            String file = getPackageName() + "login_file";
+            SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+            String id_studente = sp.getString("id_utente", null);
+            if(id_studente != null){
+                try {
+                    URL url = new URL("http://pmapp.altervista.org/elenco_corsi_studente_docente.php?" + "id_studente=" + id_studente + "&id_professore=" + id_docente);
+                    client = (HttpURLConnection) url.openConnection();
+                    client.setRequestMethod("GET");
+                    client.setDoInput(true);
+                    InputStream in = client.getInputStream();
+                    String json_string = ReadResponse.readStream(in);
+                    json_data = ReadResponse.convert2JSON(json_string);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    json_data = null;
+                }
+                finally{
+                    if (client!= null){
+                        client.disconnect();
+                    }
+                }
+            }
+
+            return json_data;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json_data) {
+            ArrayList<String> spinnerCorsiArray = new ArrayList<>();
+
+            if(json_data!=null) {
+                Iterator<String> iter = json_data.keys();
+                while (iter.hasNext()) {
+                    String key = iter.next();
+                    try {
+                        JSONObject value = json_data.getJSONObject(key);
+                        spinnerCorsiArray.add(value.getString("nome"));
+                        spinnerIdCorsiArray.add(value.getString("id_corso"));
+                    } catch (JSONException e) {
+                        // Something went wrong!
+                    }
+                }
+            }
+
+            id_corso = spinnerIdCorsiArray.get(0);
+            spinnerAdapter = new ArrayAdapter<String>(StudentBookSlotActivity.this, R.layout.spinner_row, spinnerCorsiArray);
+            sp.setAdapter(spinnerAdapter);
+        }
+    }
+
+    private class BookSlot extends AsyncTask< Void, Void, JSONObject> {
+
+
+
+        @Override
+        protected JSONObject doInBackground(Void... voids) {
+            HttpURLConnection client = null;
+            JSONObject json_data = ReadResponse.convert2JSON("");
+            String file = getPackageName() + "login_file";
+            SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+            String id_studente = sp.getString("id_utente", null);
+            if((!TextUtils.isEmpty(id_ricevimento)) && (!TextUtils.isEmpty(id_docente)) && (!TextUtils.isEmpty(id_corso))){
+                try {
+                    URL url = new URL("http://pmapp.altervista.org/elenco_corsi_studente_docente.php?" + "id_studente=" + id_studente + "&id_professore=" + id_docente);
+                    client = (HttpURLConnection) url.openConnection();
+                    client.setRequestMethod("GET");
+                    client.setDoInput(true);
+                    InputStream in = client.getInputStream();
+                    String json_string = ReadResponse.readStream(in);
+                    json_data = ReadResponse.convert2JSON(json_string);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    json_data = null;
+                }
+                finally{
+                    if (client!= null){
+                        client.disconnect();
+                    }
+                }
+            }
+            return json_data;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json_data) {
+
         }
     }
 
