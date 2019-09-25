@@ -1,21 +1,27 @@
 package com.example.gestioneRicevimenti;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +59,30 @@ public class StudentBookSlotActivity extends AppCompatActivity {
         spdocente = findViewById(R.id.spinnerdocente);
         listslot = findViewById(R.id.slotList);
 
+        listslot.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                AlertDialog.Builder adbuilder = new AlertDialog.Builder(StudentBookSlotActivity.this);
+                adbuilder.setTitle("Prenota Slot");
+                adbuilder.setMessage("Confermi di voler prenotare lo slot selezionato?");
+                adbuilder.setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                adbuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog alertdialog = adbuilder.create();
+                alertdialog.show();
+
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +116,58 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
             }
         });
+
+        final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout2);
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                DownloadSlot ds = new DownloadSlot();
+                ds.execute(listslot);
+                //listAdapter.notifyDataSetChanged();
+                swipe.setRefreshing(false);
+
+            }
+        });
+
+
+    }
+
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_menu,menu);
+        if ( menu instanceof MenuBuilder) {
+            MenuBuilder m = (MenuBuilder) menu;
+            m.setOptionalIconsVisible(true);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout :
+                String file = getPackageName() + "login_file";
+                SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+                sp.edit().clear().apply();
+                Intent i = new Intent(this,LoginActivity.class);
+                startActivity(i);
+                break;
+            case R.id.info : break;
+            case R.id.refresh:
+                DownloadSlot ds = new DownloadSlot();
+                ds.execute(listslot);
+                break;
+            case R.id.home:
+                Intent j = new Intent(StudentBookSlotActivity.this, StudentHomePageActivity.class);
+                startActivity(j);
+                break;
+
+            default: Log.i ("MENU","Default switch item");
+        }
+        return true;
     }
 
     private class DownloadSpinnerDocente extends AsyncTask< Spinner, Void, JSONObject> {

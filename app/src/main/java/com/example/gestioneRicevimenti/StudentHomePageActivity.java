@@ -96,18 +96,21 @@ public class StudentHomePageActivity extends AppCompatActivity {
 
 
 
-            final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout);
+            final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout2);
             swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
                     downloadevent = new DownloadEvent();
                     downloadevent.execute(list);
-                    listAdapter.notifyDataSetChanged();
+                   // listAdapter.notifyDataSetChanged();
                     swipe.setRefreshing(false);
 
                 }
             });
         }
+
+        downloadevent = new DownloadEvent();
+        downloadevent.execute(list);
 
 
     }
@@ -147,6 +150,8 @@ public class StudentHomePageActivity extends AppCompatActivity {
             case R.id.refresh:
                 downloadevent = new DownloadEvent();
                 downloadevent.execute(list);
+                break;
+            case R.id.home:
                 break;
 
             default: Log.i ("MENU","Default switch item");
