@@ -60,7 +60,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
     String data;
     String inizio;
     String durata;
-    String oggetto;
+    String oggetto = "";
 
     ArrayList<String> spinnerIdCorsiArray;
 
@@ -144,6 +144,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                 btndata.setText(data);
             }
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+        d.getDatePicker().setMinDate(c.getTimeInMillis());
 
         data = c.get(Calendar.DAY_OF_MONTH) + "/" +  Integer.toString(c.get(Calendar.MONTH) + 1) + "/" + c.get(Calendar.YEAR);
 
@@ -285,12 +286,13 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         }
     }
 
-    private class SlotRequest extends AsyncTask< Void, Void, JSONObject> {
+    private class SlotRequest extends AsyncTask< Void, Void, String> {
 
 
         @Override
-        protected JSONObject doInBackground(Void... voids) {
+        protected String doInBackground(Void... voids) {
             HttpURLConnection client = null;
+            String res_code = "";
             JSONObject json_data = ReadResponse.convert2JSON("");
 
             String file = getPackageName() + "login_file";
@@ -299,7 +301,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
 
             if((!TextUtils.isEmpty(id_studente)) && (!TextUtils.isEmpty(id_docente)) && (!TextUtils.isEmpty(id_corso)) && (!TextUtils.isEmpty(data)) && (!TextUtils.isEmpty(inizio)) && (!TextUtils.isEmpty(durata))) {
 
-               /* try {
+               try {
                     URL url = new URL("http://pmapp.altervista.org/richiesta_nuovo_ricevimento.php");
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("POST");
@@ -309,30 +311,28 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
 
                     OutputStream out = new BufferedOutputStream(client.getOutputStream());
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
-                    String data = URLEncoder.encode("id_docente", "UTF-8")
+                    String req = URLEncoder.encode("id_docente", "UTF-8")
                             + "=" + URLEncoder.encode(id_docente, "UTF-8");
-                    data += "&" + URLEncoder.encode("id_studente", "UTF-8") + "="
+                    req += "&" + URLEncoder.encode("id_studente", "UTF-8") + "="
                             + URLEncoder.encode(id_studente, "UTF-8");
-                    data += "&" + URLEncoder.encode("id_corso", "UTF-8") + "="
+                    req += "&" + URLEncoder.encode("id_corso", "UTF-8") + "="
                             + URLEncoder.encode(id_corso, "UTF-8");
-                    data += "&" + URLEncoder.encode("data", "UTF-8") + "="
+                    req += "&" + URLEncoder.encode("data", "UTF-8") + "="
                             + URLEncoder.encode(data, "UTF-8");
-                    data += "&" + URLEncoder.encode("inizio", "UTF-8") + "="
+                    req += "&" + URLEncoder.encode("inizio", "UTF-8") + "="
                             + URLEncoder.encode(inizio, "UTF-8");
-                    data += "&" + URLEncoder.encode("durata", "UTF-8") + "="
+                    req += "&" + URLEncoder.encode("durata", "UTF-8") + "="
                             + URLEncoder.encode(durata, "UTF-8");
-                    data += "&" + URLEncoder.encode("oggetto", "UTF-8") + "="
+                    req += "&" + URLEncoder.encode("oggetto", "UTF-8") + "="
                             + URLEncoder.encode(oggetto, "UTF-8");
 
-                    writer.write(data);
+                    writer.write(req);
                     writer.flush();
                     writer.close();
                     out.close();
 
                     InputStream in = client.getInputStream();
-                    String json_string = ReadResponse.readStream(in).trim();
-                    json_data = ReadResponse.convert2JSON(json_string);
-
+                    res_code = ReadResponse.readStream(in).trim();
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -341,22 +341,33 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                         client.disconnect();
                     }
                 }
-
-                */
                Log.i("Dati:", id_studente + "," + id_corso + "," + id_docente + "," + data + "," + inizio + "," + durata + "," + oggetto );
             }
 
 
 
 
-            return json_data;
+            return res_code;
         }
 
         @Override
-        protected void onPostExecute(JSONObject json_data) {
-            //cosa fa finita la richiesta?
+        protected void onPostExecute(String s) {
+            switch (s){
+                case "-1":
+                    Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: riprova (-1)", Toast.LENGTH_LONG).show();
+                    break; //richiesta fallita
 
-            Toast.makeText(StudentNewEventActivity.this, "Richiesta inviata al docente!", Toast.LENGTH_LONG).show();
+                case "1":
+                    Toast.makeText(StudentNewEventActivity.this, "Richiesta effettuata correttamente", Toast.LENGTH_LONG).show();
+                    break; // richiesta effettuata
+
+                case "":
+                    Toast.makeText(StudentNewEventActivity.this, "Richieata fallita: dati mancanti", Toast.LENGTH_LONG).show();
+                    break; // mancano dati
+
+                default:
+                   break;
+            }
 
 
         }

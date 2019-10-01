@@ -107,10 +107,10 @@ public class StudentHomePageActivity extends AppCompatActivity {
 
                 }
             });
-        }
+            downloadevent = new DownloadEvent();
+            downloadevent.execute(list);
 
-        downloadevent = new DownloadEvent();
-        downloadevent.execute(list);
+        }
 
 
     }
@@ -219,7 +219,8 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 }
             }
             listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray);
-            list.setAdapter(listAdapter);
+            if(list != null)
+                list.setAdapter(listAdapter);
         }
     }
 

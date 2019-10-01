@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -132,9 +133,8 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        Log.i("Dati:", id_studente + "," + id_ricevimento + "," + id_corso + "," + id_docente + "," + oggetto );
-
-
+                        BookSlot bs = new BookSlot();
+                        bs.execute();
                     }
                 });
                 adbuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -406,26 +406,28 @@ public class StudentBookSlotActivity extends AppCompatActivity {
         }
     }
 
-    private class BookSlot extends AsyncTask< Void, Void, JSONObject> {
+    private class BookSlot extends AsyncTask< Void, Void, String> {
 
 
 
         @Override
-        protected JSONObject doInBackground(Void... voids) {
+        protected String doInBackground(Void... voids) {
             HttpURLConnection client = null;
+            String ret_code = "";
+
             JSONObject json_data = ReadResponse.convert2JSON("");
             String file = getPackageName() + "login_file";
             SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
             String id_studente = sp.getString("id_utente", null);
             if((!TextUtils.isEmpty(id_ricevimento)) && (!TextUtils.isEmpty(id_docente)) && (!TextUtils.isEmpty(id_corso))){
                 try {
-                    URL url = new URL("http://pmapp.altervista.org/elenco_corsi_studente_docente.php?" + "id_studente=" + id_studente + "&id_professore=" + id_docente);
+                    URL url = new URL("http://pmapp.altervista.org/prenota_slot.php?" + "id_studente=" + id_studente + "&id_corso=" + id_corso + "&id_ricevimento=" + id_ricevimento + "&oggetto=" + oggetto);
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("GET");
                     client.setDoInput(true);
                     InputStream in = client.getInputStream();
-                    String json_string = ReadResponse.readStream(in);
-                    json_data = ReadResponse.convert2JSON(json_string);
+                    ret_code = ReadResponse.readStream(in).replaceAll("\n","");
+
                 } catch (IOException e) {
                     e.printStackTrace();
                     json_data = null;
@@ -436,12 +438,31 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     }
                 }
             }
-            return json_data;
+            return ret_code;
         }
 
         @Override
-        protected void onPostExecute(JSONObject json_data) {
+        protected void onPostExecute(String ret) {
 
+            DownloadSlot ds = new DownloadSlot();
+            ds.execute(listslot);
+            switch (ret){
+                case "-1":
+                    Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: lo slot è stato già prenotato", Toast.LENGTH_LONG).show();
+                    break; //slot prenotato
+
+                case "-2":
+                    Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: riprova (-2)", Toast.LENGTH_LONG).show();
+                    break; // errore query
+
+                case "":
+                    Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: dati mancanti", Toast.LENGTH_LONG).show();
+                    break; // errore generico
+
+                default:
+                    Toast.makeText(StudentBookSlotActivity.this, "Prenotazione riuscita: lo slot è stato prenotato con successo!", Toast.LENGTH_LONG).show();
+                    break; // caso standard
+            }
         }
     }
 
