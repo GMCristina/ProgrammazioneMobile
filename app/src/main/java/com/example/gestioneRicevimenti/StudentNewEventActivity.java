@@ -224,9 +224,11 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnrichiedi:
-                SlotRequest slot_request = new SlotRequest();
-                slot_request.execute();
-                this.finish();
+                if(receiver.CheckConnection(StudentNewEventActivity.this)) {
+                    SlotRequest slot_request = new SlotRequest();
+                    slot_request.execute();
+                    this.finish();
+                }
                 break;
             case R.id.btnannulla :
                 this.finish();

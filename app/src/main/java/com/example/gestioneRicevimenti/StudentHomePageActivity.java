@@ -110,9 +110,11 @@ public class StudentHomePageActivity extends AppCompatActivity {
             swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    downloadevent = new DownloadEvent();
-                    downloadevent.execute(list);
-                    listAdapter.notifyDataSetChanged();
+                    if(receiver.CheckConnection(StudentHomePageActivity.this)) {
+                        downloadevent = new DownloadEvent();
+                        downloadevent.execute(list);
+                        listAdapter.notifyDataSetChanged();
+                    }
                     swipe.setRefreshing(false);
 
                 }
@@ -158,8 +160,10 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 break;
             case R.id.info : break;
             case R.id.refresh:
-                downloadevent = new DownloadEvent();
-                downloadevent.execute(list);
+                if(receiver.CheckConnection(StudentHomePageActivity.this)) {
+                    downloadevent = new DownloadEvent();
+                    downloadevent.execute(list);
+                }
                 break;
             case R.id.home:
                 break;

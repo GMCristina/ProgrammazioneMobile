@@ -82,7 +82,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 status.setText("Prenotato");
                 break;
             case "4": // confermato
-                status.setText("Approvato");
+                status.setText("Prenotato(app)");
                 break;
 
         }

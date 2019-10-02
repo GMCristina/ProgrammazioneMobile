@@ -128,11 +128,14 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                 sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        id_corso = spinnerIdCorsiArray.get(position);
+                        if(receiver.CheckConnection(StudentBookSlotActivity.this)) {
+                            id_corso = spinnerIdCorsiArray.get(position);
+                        }
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
+                        receiver.CheckConnection(StudentBookSlotActivity.this);
 
                     }
                 });
@@ -161,13 +164,15 @@ public class StudentBookSlotActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!id_docente.equals("")) {
-                    Intent j = new Intent(StudentBookSlotActivity.this, StudentNewEventActivity.class);
-                    Bundle b = new Bundle();
-                    b.putString("id_docente", id_docente);
-                    b.putString("docente", docente);
-                    j.putExtra("id", b);
-                    startActivity(j);
+                if(receiver.CheckConnection(StudentBookSlotActivity.this)) {
+                    if (!id_docente.equals("")) {
+                        Intent j = new Intent(StudentBookSlotActivity.this, StudentNewEventActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("id_docente", id_docente);
+                        b.putString("docente", docente);
+                        j.putExtra("id", b);
+                        startActivity(j);
+                    }
                 }
             }
         });
@@ -178,26 +183,36 @@ public class StudentBookSlotActivity extends AppCompatActivity {
         spdocente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                id_docente = id_professori.get(position);
-                docente = spinnerDocenteArray.get(position);
-                DownloadSlot ds = new DownloadSlot();
-                ds.execute(listslot);
+                if(receiver.CheckConnection(StudentBookSlotActivity.this)) {
+                    id_docente = id_professori.get(position);
+                    docente = spinnerDocenteArray.get(position);
+                    DownloadSlot ds = new DownloadSlot();
+                    ds.execute(listslot);
+                }
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //NON FUNZIONA
+                receiver.CheckConnection(StudentBookSlotActivity.this);
             }
         });
+
 
         final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout2);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                DownloadSlot ds = new DownloadSlot();
-                ds.execute(listslot);
-                //listAdapter.notifyDataSetChanged();
+                if(receiver.CheckConnection(StudentBookSlotActivity.this)) {
+                    if(spdocente==null || spdocente.getSelectedItem()==null) {
+                        DownloadSpinnerDocente dsc = new DownloadSpinnerDocente();
+                        dsc.execute(spdocente);
+                    }
+                    DownloadSlot ds = new DownloadSlot();
+                    ds.execute(listslot);
+                    //listAdapter.notifyDataSetChanged();
+                }
                 swipe.setRefreshing(false);
 
             }
@@ -231,10 +246,12 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                 break;
             case R.id.info : break;
             case R.id.refresh:
-                DownloadSpinnerDocente dsc = new DownloadSpinnerDocente ();
-                dsc.execute(spdocente);
-                DownloadSlot ds = new DownloadSlot();
-                ds.execute(listslot);
+                if(receiver.CheckConnection(StudentBookSlotActivity.this)) {
+                    DownloadSpinnerDocente dsc = new DownloadSpinnerDocente();
+                    dsc.execute(spdocente);
+                    DownloadSlot ds = new DownloadSlot();
+                    ds.execute(listslot);
+                }
                 break;
             case R.id.home:
                 Intent j = new Intent(StudentBookSlotActivity.this, StudentHomePageActivity.class);
