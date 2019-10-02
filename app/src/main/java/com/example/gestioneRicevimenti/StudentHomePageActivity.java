@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -111,7 +112,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 public void onRefresh() {
                     downloadevent = new DownloadEvent();
                     downloadevent.execute(list);
-                   // listAdapter.notifyDataSetChanged();
+                    listAdapter.notifyDataSetChanged();
                     swipe.setRefreshing(false);
 
                 }
@@ -211,6 +212,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
             ArrayList<String> eventNameArray = new ArrayList<>();
             ArrayList<String> eventHoursArray = new ArrayList<>();
             ArrayList<String> eventIdArray = new ArrayList<>();
+            ArrayList<String> eventStatusArray = new ArrayList<>();
 
             if(json_data!=null) {
                 Iterator<String> iter = json_data.keys();
@@ -222,12 +224,13 @@ public class StudentHomePageActivity extends AppCompatActivity {
                         eventNameArray.add(value.getString("nome") + " " + value.getString("cognome"));
                         eventHoursArray.add(value.getString("inizio") + " - " + value.getString("fine"));
                         eventIdArray.add(value.getString("id_ricevimento"));
+                        eventStatusArray.add(value.getString("stato"));
                     } catch (JSONException e) {
                         // Something went wrong!
                     }
                 }
             }
-            listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray);
+            listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
             if(list != null)
                 list.setAdapter(listAdapter);
         }

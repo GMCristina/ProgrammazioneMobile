@@ -28,6 +28,7 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
 
     Context con;
     String id_ricevimento;
+    String status;
 
     public StudentEventDialog(@NonNull Context context) {
         super(context);

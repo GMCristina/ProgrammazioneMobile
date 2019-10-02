@@ -23,12 +23,14 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     private ArrayList<String> eventId;
 
+    private ArrayList<String> eventStatus;
+
     private String previous = "";
 
     static boolean flag = false;
 
 
-    public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours, ArrayList<String> id){
+    public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours, ArrayList<String> id, ArrayList<String> stato){
 
         super(context,R.layout.events_listview_layout, date);
         this.context = context;
@@ -37,6 +39,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         this.eventName = event;
         this.eventHours = hours;
         this.eventId = id;
+        this.eventStatus = stato;
     }
 
 
@@ -55,6 +58,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         TextView separatorText = (TextView) rowView.findViewById(R.id.separator);
         TextView eventText = (TextView) rowView.findViewById(R.id.event);
         TextView oraText = (TextView) rowView.findViewById(R.id.ora);
+        TextView status = (TextView) rowView.findViewById(R.id.status);
 
         //this code sets the values of the objects to values from the arrays
         separatorText.setText(eventDate.get(position));
@@ -67,8 +71,21 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         }
         previous = eventDate.get(position);
 
+        switch (eventStatus.get(position)) {
+            case "2": // richiesto
+                status.setText("Richiesto");
+                break;
+            case "3": // rifiutato
+                status.setText("Rifiutato");
+                break;
+            case "1": // confermato
+                status.setText("Prenotato");
+                break;
+            case "4": // confermato
+                status.setText("Approvato");
+                break;
 
-
+        }
         return rowView;
 
     }
