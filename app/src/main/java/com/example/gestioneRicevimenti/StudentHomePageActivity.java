@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -35,6 +37,8 @@ import java.util.Iterator;
 
 public class StudentHomePageActivity extends AppCompatActivity {
 
+    ConnectionReceiver receiver;
+
     ListView list;
     HttpURLConnection client = null;
     DownloadEvent downloadevent;
@@ -45,6 +49,11 @@ public class StudentHomePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        receiver = new ConnectionReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, filter);
 
         String file = getPackageName() + "login_file";
         SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);

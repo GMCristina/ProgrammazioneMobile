@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -60,6 +62,8 @@ public class StudentBookSlotActivity extends AppCompatActivity {
     ArrayList<String> spinnerDocenteArray = new ArrayList<>();
     ArrayList<String> spinnerIdCorsiArray =new ArrayList<>();
 
+    ConnectionReceiver receiver;
+
 
     String docente;
 
@@ -67,6 +71,11 @@ public class StudentBookSlotActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_book_slot);
+
+        receiver = new ConnectionReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, filter);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -222,6 +231,8 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                 break;
             case R.id.info : break;
             case R.id.refresh:
+                DownloadSpinnerDocente dsc = new DownloadSpinnerDocente ();
+                dsc.execute(spdocente);
                 DownloadSlot ds = new DownloadSlot();
                 ds.execute(listslot);
                 break;
@@ -244,6 +255,10 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             HttpURLConnection client = null;
             JSONObject json_data = ReadResponse.convert2JSON("");
             sp = spinners[0];
+            String file = getPackageName() + "login_file";
+            SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+            String id_studente = sp.getString("id_utente", null);
+
             if(id_studente != null){
                 try {
                     URL url = new URL("http://pmapp.altervista.org/professori.php?" + "id_studente=" + id_studente);
@@ -262,8 +277,8 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                         client.disconnect();
                     }
                 }
-            }
 
+            }
             return json_data;
         }
 
@@ -359,7 +374,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             String file = getPackageName() + "login_file";
             SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
             String id_studente = sp.getString("id_utente", null);
-            if(id_studente != null){
+            if(id_studente != null && id_docente!=null){
                 try {
                     URL url = new URL("http://pmapp.altervista.org/elenco_corsi_studente_docente.php?" + "id_studente=" + id_studente + "&id_professore=" + id_docente);
                     client = (HttpURLConnection) url.openConnection();
@@ -367,6 +382,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     client.setDoInput(true);
                     InputStream in = client.getInputStream();
                     String json_string = ReadResponse.readStream(in);
+                    Log.i("SpinnerCorso", json_string);
                     json_data = ReadResponse.convert2JSON(json_string);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -399,8 +415,9 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     }
                 }
             }
-
-            id_corso = spinnerIdCorsiArray.get(0);
+            if(!spinnerIdCorsiArray.isEmpty()) {
+                id_corso = spinnerIdCorsiArray.get(0);
+            }
             spinnerAdapter = new ArrayAdapter<String>(StudentBookSlotActivity.this, R.layout.spinner_row, spinnerCorsiArray);
             sp.setAdapter(spinnerAdapter);
         }

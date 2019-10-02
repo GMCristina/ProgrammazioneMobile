@@ -4,8 +4,10 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,11 +73,18 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
     DatePickerDialog d;
     TimePicker tp;
 
+    ConnectionReceiver receiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_new_event);
+
+        receiver = new ConnectionReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, filter);
 
         Button btnrichiedi = findViewById(R.id.btnrichiedi);
         Button btnannulla= findViewById(R.id.btnannulla);
@@ -206,9 +215,6 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
 
             }
         });
-
-
-
         DownloadSpinnerCorso download_docenti = new DownloadSpinnerCorso();
         download_docenti.execute(spcorso);
     }
@@ -280,7 +286,10 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                     }
                 }
             }
-            corso = spinnerIdCorsiArray.get(0);
+
+            if(!spinnerIdCorsiArray.isEmpty()) {
+                corso = spinnerIdCorsiArray.get(0);
+            }
             spinnerAdapter = new ArrayAdapter<String>(StudentNewEventActivity.this, R.layout.spinner_row,spinnerCorsiArray);
             sp.setAdapter(spinnerAdapter);
         }
@@ -362,7 +371,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                     break; // richiesta effettuata
 
                 case "":
-                    Toast.makeText(StudentNewEventActivity.this, "Richieata fallita: dati mancanti", Toast.LENGTH_LONG).show();
+                    Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: dati mancanti", Toast.LENGTH_LONG).show();
                     break; // mancano dati
 
                 default:

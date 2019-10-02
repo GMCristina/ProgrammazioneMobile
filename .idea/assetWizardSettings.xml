@@ -62,7 +62,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="110" />
+                                                <entry key="scalingPercent" value="97" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -73,8 +73,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\Utente\Desktop\univpm_logo_546.png" />
-                                      <entry key="outputName" value="ic_launcher_logo2" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
+                                      <entry key="foregroundImage" value="C:\Users\Utente\Documents\Cristina\1 universita\III anno\II semestre\Programmazione mobile\Progetto\univpm_logo_546.png" />
+                                      <entry key="outputName" value="ic_launcher_logo3" />
                                     </map>
                                   </option>
                                 </PersistentState>
