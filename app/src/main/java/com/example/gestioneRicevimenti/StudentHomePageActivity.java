@@ -41,9 +41,10 @@ public class StudentHomePageActivity extends AppCompatActivity {
     ConnectionReceiver receiver;
 
     ListView list;
+    CustomListAdapter listAdapter;
     HttpURLConnection client = null;
     DownloadEvent downloadevent;
-    CustomListAdapter listAdapter;
+
     StudentEventDialog sed;
 
 
@@ -56,76 +57,60 @@ public class StudentHomePageActivity extends AppCompatActivity {
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(receiver, filter);
 
-        String file = getPackageName() + "login_file";
-        SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
-        String idutente = sp.getString("id_utente", "no_id");
-        if (idutente.equals("no_id")) {
-            Intent i = new Intent(this, LoginActivity.class);
+        setContentView(R.layout.activity_student_home_page_activity);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            Intent i = new Intent(StudentHomePageActivity.this, StudentBookSlotActivity.class);
             startActivity(i);
-        } else {
+            }
+        });
 
-            setContentView(R.layout.activity_student_home_page_activity);
-
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-
-            FloatingActionButton fab = findViewById(R.id.fab);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(StudentHomePageActivity.this, StudentBookSlotActivity.class);
-                    startActivity(i);
-                }
-            });
-
-
-
-            list = findViewById(R.id.slotList);
-            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    if(receiver.CheckConnection(StudentHomePageActivity.this)) {
-                        String id = listAdapter.getOggetto(i);
-                        sed = new StudentEventDialog(StudentHomePageActivity.this);
-                        sed.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                downloadevent = new DownloadEvent();
-                                downloadevent.execute(list);
-                                listAdapter.notifyDataSetChanged();
-                            }
-                        });
-                        sed.dataShow(id);
-                        Window w = sed.getWindow();
-                        w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        list = findViewById(R.id.slotList);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            if(receiver.CheckConnection(StudentHomePageActivity.this)) {
+                String id = listAdapter.getOggetto(i);
+                sed = new StudentEventDialog(StudentHomePageActivity.this);
+                sed.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                    downloadevent = new DownloadEvent();
+                    downloadevent.execute(list);
+                    listAdapter.notifyDataSetChanged();
                     }
+                });
+                sed.dataShow(id);
+                Window w = sed.getWindow();
+                w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
+            }
+        });
+
+        final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout2);
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(receiver.CheckConnection(StudentHomePageActivity.this)) {
+                    downloadevent = new DownloadEvent();
+                    downloadevent.execute(list);
+                    listAdapter.notifyDataSetChanged();
                 }
-            });
+                swipe.setRefreshing(false);
 
-
-
-
-            final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout2);
-            swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    if(receiver.CheckConnection(StudentHomePageActivity.this)) {
-                        downloadevent = new DownloadEvent();
-                        downloadevent.execute(list);
-                        listAdapter.notifyDataSetChanged();
-                    }
-                    swipe.setRefreshing(false);
-
-                }
-            });
-            downloadevent = new DownloadEvent();
-            downloadevent.execute(list);
-
-        }
-
+            }
+        });
+        downloadevent = new DownloadEvent();
+        downloadevent.execute(list);
 
     }
 

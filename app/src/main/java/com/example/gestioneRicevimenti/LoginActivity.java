@@ -30,16 +30,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        String file = getPackageName() + "login_file";
+        SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+        String idutente = sp.getString("id_utente", "no_id");
+        if (idutente.equals("no_id")) {
+            setContentView(R.layout.login);
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
 
 
-        etmatricola = findViewById(R.id.matricola);
-        etpsw = findViewById(R.id.password);
-        Button btnaccedi = findViewById(R.id.btnAccedi);
-        btnaccedi.setOnClickListener(this);
+            etmatricola = findViewById(R.id.matricola);
+            etpsw = findViewById(R.id.password);
+            Button btnaccedi = findViewById(R.id.btnAccedi);
+            btnaccedi.setOnClickListener(this);
+
+        } else {
+            switch (sp.getString("tipo_utente","")){
+                case "s":
+                    Intent i = new Intent (LoginActivity.this ,StudentHomePageActivity.class);
+                    startActivity(i);
+                    break;
+                case "p":
+                    Intent j = new Intent (LoginActivity.this ,ProfHomePageActivity.class);
+                    startActivity(j);
+                    break;
+                default:
+            }
+
+        }
     }
 
 
