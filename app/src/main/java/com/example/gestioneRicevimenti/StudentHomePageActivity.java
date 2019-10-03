@@ -87,19 +87,21 @@ public class StudentHomePageActivity extends AppCompatActivity {
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    String id = listAdapter.getOggetto(i);
-                    sed = new StudentEventDialog(StudentHomePageActivity.this);
-                    sed.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            downloadevent = new DownloadEvent();
-                            downloadevent.execute(list);
-                            listAdapter.notifyDataSetChanged();
-                        }
-                    });
-                    sed.dataShow(id);
-                    Window w = sed.getWindow();
-                    w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                    if(receiver.CheckConnection(StudentHomePageActivity.this)) {
+                        String id = listAdapter.getOggetto(i);
+                        sed = new StudentEventDialog(StudentHomePageActivity.this);
+                        sed.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                downloadevent = new DownloadEvent();
+                                downloadevent.execute(list);
+                                listAdapter.notifyDataSetChanged();
+                            }
+                        });
+                        sed.dataShow(id);
+                        Window w = sed.getWindow();
+                        w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    }
                 }
             });
 
@@ -131,8 +133,8 @@ public class StudentHomePageActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.i("OnResume", "onresume");
-        downloadevent = new DownloadEvent();
-        downloadevent.execute(list);
+            downloadevent = new DownloadEvent();
+            downloadevent.execute(list);
     }
 
 

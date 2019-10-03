@@ -12,6 +12,10 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="title_activity_student_book_slot">StudentBookSlotActivity</string>
+    <string name="hours_hint">HH</string>
+
+    <string name="minutes_hint">mm</string>
+    <string name="title_activity_prof_home_page">ProfHomePageActivity</string>
     <string-array name="durataricevimento">
         <item> 5 min </item>
         <item> 10 min </item>
@@ -20,10 +24,6 @@
         <item> 1 h </item>
         <item> 2 h </item>
     </string-array>
-
-    <string name="hours_hint">HH</string>
-    <string name="minutes_hint">mm</string>
-
 
 
 </resources>

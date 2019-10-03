@@ -81,8 +81,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     e.putString("id_utente", value.getString("id"));
                     e.putString("tipo_utente", value.getString("tipo"));
                     e.apply();
-                    Intent i = new Intent(LoginActivity.this ,StudentHomePageActivity.class);
-                    startActivity(i);
+                    switch (sp.getString("tipo_utente","")){
+                        case "s":
+                            Intent i = new Intent (LoginActivity.this ,StudentHomePageActivity.class);
+                            startActivity(i);
+                            break;
+                        case "p":
+                            Intent j = new Intent (LoginActivity.this ,ProfHomePageActivity.class);
+                            startActivity(j);
+                            break;
+                        default:
+                    }
                 } catch (JSONException e) {
                     // Something went wrong!
                 }
