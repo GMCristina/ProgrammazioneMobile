@@ -2,7 +2,6 @@ package com.example.gestioneRicevimenti;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -40,10 +37,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 
 public class StudentNewEventActivity extends AppCompatActivity implements View.OnClickListener {
@@ -87,7 +82,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         registerReceiver(receiver, filter);
 
         Button btnrichiedi = findViewById(R.id.btnrichiedi);
-        Button btnannulla= findViewById(R.id.btnannulla);
+        Button btnannulla= findViewById(R.id.btnRichiediRicevimento);
         btnrichiedi.setOnClickListener(this);
         btnannulla.setOnClickListener(this);
 
@@ -230,7 +225,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                     this.finish();
                 }
                 break;
-            case R.id.btnannulla :
+            case R.id.btnRichiediRicevimento:
                 this.finish();
                 break;
         }

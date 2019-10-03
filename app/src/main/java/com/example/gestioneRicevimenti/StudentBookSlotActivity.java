@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -86,6 +87,23 @@ public class StudentBookSlotActivity extends AppCompatActivity {
         String file = getPackageName() + "login_file";
         SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
         id_studente = sp.getString("id_utente", null);
+
+        Button btnRichiedi = findViewById(R.id.btnRichiediRicevimento);
+        btnRichiedi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(receiver.CheckConnection(StudentBookSlotActivity.this)) {
+                    if (!id_docente.equals("")) {
+                        Intent j = new Intent(StudentBookSlotActivity.this, StudentNewEventActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("id_docente", id_docente);
+                        b.putString("docente", docente);
+                        j.putExtra("id", b);
+                        startActivity(j);
+                    }
+                }
+            }
+        });
 
 
         listslot.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -160,22 +178,8 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(receiver.CheckConnection(StudentBookSlotActivity.this)) {
-                    if (!id_docente.equals("")) {
-                        Intent j = new Intent(StudentBookSlotActivity.this, StudentNewEventActivity.class);
-                        Bundle b = new Bundle();
-                        b.putString("id_docente", id_docente);
-                        b.putString("docente", docente);
-                        j.putExtra("id", b);
-                        startActivity(j);
-                    }
-                }
-            }
-        });
+
+
 
         DownloadSpinnerDocente downloadspinnerdocente = new DownloadSpinnerDocente ();
         downloadspinnerdocente.execute(spdocente);
@@ -455,7 +459,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             String id_studente = sp.getString("id_utente", null);
             if((!TextUtils.isEmpty(id_ricevimento)) && (!TextUtils.isEmpty(id_docente)) && (!TextUtils.isEmpty(id_corso))){
                 try {
-                    URL url = new URL("http://pmapp.altervista.org/prenota_slot.php?" + "id_studente=" + id_studente + "&id_corso=" + id_corso + "&id_ricevimento=" + id_ricevimento + "&oggetto=" + oggetto);
+                    URL url = new URL("http://pmapp.altervista.org/prenota_slot.php?" + "id_studente=" + id_studente + "&id_corso=" + id_corso + "&id_ricevimento=" + id_ricevimento + "&id_docente=" + id_docente + "&oggetto=" + oggetto);
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("GET");
                     client.setDoInput(true);
@@ -487,6 +491,10 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
                 case "-2":
                     Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: riprova (-2)", Toast.LENGTH_LONG).show();
+                    break; // errore query
+
+                case "-3":
+                    Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: Hai già prenotato un ricevimento con questo docente in questo giorno", Toast.LENGTH_LONG).show();
                     break; // errore query
 
                 case "":
