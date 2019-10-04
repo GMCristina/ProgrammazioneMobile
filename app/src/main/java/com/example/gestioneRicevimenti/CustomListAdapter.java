@@ -1,6 +1,7 @@
 package com.example.gestioneRicevimenti;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -48,10 +49,10 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.events_listview_layout, null);
 
-        if(flag){
-            flag = true;
-        }
-        flag = true;
+//        if(flag){
+//            flag = true;
+//        }
+//        flag = true;
 
 
         //this code gets references to objects in the events_listview_layout.xml file
@@ -84,6 +85,11 @@ public class CustomListAdapter extends ArrayAdapter<String> {
             case "4": // confermato
                 status.setText("Prenotato(app)");
                 break;
+            case "0": // libero
+                status.setText("Libero");
+              //  status.setTextColor(Color.GREEN);
+                break;
+
 
         }
         return rowView;
@@ -93,6 +99,11 @@ public class CustomListAdapter extends ArrayAdapter<String> {
     public String getOggetto(int position) {
         String st = eventId.get(position);
         return st;
+    }
+
+    public String getStatus (int position){
+        String s = eventStatus.get(position);
+        return s;
     }
 
 }

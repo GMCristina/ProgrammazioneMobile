@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvStudente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F6F6"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Studente :" />
+
+    <TextView
+        android:id="@+id/txtStudente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:minLines="1"
+        android:singleLine="false"
+        android:text="TextView"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:id="@+id/tvCorso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F6F6"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Corso :" />
+
+    <TextView
+        android:id="@+id/txtCorso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="TextView"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F6F6"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Data :" />
+
+    <TextView
+        android:id="@+id/txtData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="TextView"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F6F6"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Inizio :" />
+
+    <TextView
+        android:id="@+id/txtInizio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="TextView"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F6F6"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Fine :" />
+
+    <TextView
+        android:id="@+id/txtFine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="TextView"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:id="@+id/tvData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F6F6"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="Oggetto" />
+
+    <TextView
+        android:id="@+id/txtOggetto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:minLines="2"
+        android:text="TextView"
+        android:textAlignment="textEnd" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnConferma"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Conferma"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <Button
+            android:id="@+id/btnRifiuta"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rifiuta"
+            android:textColor="@android:color/holo_red_light" />
+
+        <Button
+            android:id="@+id/btnFine"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fine" />
+
+    </LinearLayout>
+
+</LinearLayout>

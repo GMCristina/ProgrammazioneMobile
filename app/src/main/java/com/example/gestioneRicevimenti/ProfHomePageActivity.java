@@ -2,6 +2,7 @@ package com.example.gestioneRicevimenti;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
@@ -19,7 +21,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,11 +39,20 @@ import java.util.Iterator;
 
 public class ProfHomePageActivity extends AppCompatActivity {
 
+    StudentEventDialog sed;
+
+
     ConnectionReceiver receiver;
 
     ListView list;
     CustomListAdapter listAdapter;
+    Spinner sp;
 
+    ArrayList<String> eventDateArray;
+    ArrayList<String> eventNameArray;
+    ArrayList<String> eventHoursArray;
+    ArrayList<String> eventIdArray;
+    ArrayList<String> eventStatusArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +67,73 @@ public class ProfHomePageActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        sp = findViewById(R.id.spinnerStati);
 
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position == 0){
+                    listAdapter = new CustomListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
+                    if(list != null)
+                        list.setAdapter(listAdapter);
+                } else {
+                    ArrayList<String> filtredEventDateArray = new ArrayList<>();
+                    ArrayList<String> filtredEventNameArray = new ArrayList<>();
+                    ArrayList<String> filtredEventHoursArray = new ArrayList<>();
+                    ArrayList<String> filtredEventIdArray = new ArrayList<>();
+                    ArrayList<String> filtredEventStatusArray = new ArrayList<>();
+
+                    for (int i = 0; i < eventIdArray.size(); i++) {
+                        if (eventStatusArray.get(i).equals(Integer.toString(position - 1))) {
+                            filtredEventIdArray.add(eventIdArray.get(i));
+                            filtredEventNameArray.add(eventNameArray.get(i));
+                            filtredEventDateArray.add(eventDateArray.get(i));
+                            filtredEventHoursArray.add(eventHoursArray.get(i));
+                            filtredEventStatusArray.add(eventStatusArray.get(i));
+                        }
+                    }
+
+                    listAdapter = new CustomListAdapter(ProfHomePageActivity.this, filtredEventDateArray, filtredEventNameArray, filtredEventHoursArray, filtredEventIdArray, filtredEventStatusArray);
+                    if (list != null)
+                        list.setAdapter(listAdapter);
+                }
+        }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        list = findViewById(R.id.slotList);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(receiver.CheckConnection(ProfHomePageActivity.this)) {
+                    String id_ric = listAdapter.getOggetto(i);
+                    String status = listAdapter.getStatus(i);
+                    sed = new StudentEventDialog(ProfHomePageActivity.this);
+                    sed.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            DownloadSlotProf downloadSlot = new DownloadSlotProf();
+                            downloadSlot.execute(list);
+                            listAdapter.notifyDataSetChanged();
+                            sp.setSelection(0);
+                            listAdapter.notifyDataSetChanged();
+                        }
+                    });
+                    sed.dataShow(id_ric);
+                    Window w = sed.getWindow();
+                    w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +143,27 @@ public class ProfHomePageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        final SwipeRefreshLayout swipe = findViewById(R.id.swipeRefreshLayout2);
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(receiver.CheckConnection(ProfHomePageActivity.this)) {
+                    DownloadSlotProf downloadSlot = new DownloadSlotProf();
+                    downloadSlot.execute(list);
+                    listAdapter.notifyDataSetChanged();
+                    sp.setSelection(0);
+                }
+                swipe.setRefreshing(false);
+
+            }
+        });
+
+
+        DownloadSlotProf downloadSlot = new DownloadSlotProf();
+        downloadSlot.execute(list);
+
+
     }
 
     @SuppressLint("RestrictedApi")
@@ -84,14 +183,18 @@ public class ProfHomePageActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout :
                 String file = getPackageName() + "login_file";
-                SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
-                sp.edit().clear().apply();
+                SharedPreferences shared = getSharedPreferences(file, Context.MODE_PRIVATE);
+                shared.edit().clear().apply();
                 Intent i = new Intent(this,LoginActivity.class);
                 startActivity(i);
                 break;
             case R.id.info : break;
             case R.id.refresh:
                 if(receiver.CheckConnection(ProfHomePageActivity.this)) {
+
+                    DownloadSlotProf downloadSlot = new DownloadSlotProf();
+                    downloadSlot.execute(list);
+                    sp.setSelection(0);
 
                 }
                 break;
@@ -119,7 +222,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
             String id = sp.getString("id_utente", null);
             if(id != null){
                 try {
-                    URL url = new URL("http://pmapp.altervista.org/elenco_ricevimenti_prof.php?" + "id=" + id);
+                    URL url = new URL("http://pmapp.altervista.org/elenco_ricevimenti_prof.php?" + "id_professore=" + id);
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("GET");
                     client.setDoInput(true);
@@ -142,11 +245,12 @@ public class ProfHomePageActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json_data) {
-            ArrayList<String> eventDateArray = new ArrayList<>();
-            ArrayList<String> eventNameArray = new ArrayList<>();
-            ArrayList<String> eventHoursArray = new ArrayList<>();
-            ArrayList<String> eventIdArray = new ArrayList<>();
-            ArrayList<String> eventStatusArray = new ArrayList<>();
+            eventDateArray = new ArrayList<>();
+            eventNameArray = new ArrayList<>();
+            eventHoursArray = new ArrayList<>();
+            eventIdArray = new ArrayList<>();
+            eventStatusArray = new ArrayList<>();
+
 
             if(json_data!=null) {
                 Iterator<String> iter = json_data.keys();

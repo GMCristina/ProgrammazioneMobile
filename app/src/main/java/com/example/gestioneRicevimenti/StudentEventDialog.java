@@ -28,7 +28,6 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
 
     Context con;
     String id_ricevimento;
-    String status;
 
     public StudentEventDialog(@NonNull Context context) {
         super(context);
@@ -104,7 +103,6 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
         id_ricevimento = id;
         this.show();
     }
-
 
 
     private class DownloadEventDetail extends AsyncTask<TextView, Void, JSONObject> {
