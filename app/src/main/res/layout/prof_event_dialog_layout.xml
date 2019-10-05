@@ -12,7 +12,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:background="#F6F6F6"
-        android:text="Studente :" />
+        android:text="Studente :"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtStudente"
@@ -24,7 +26,8 @@
         android:minLines="1"
         android:singleLine="false"
         android:text="TextView"
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/tvCorso"
@@ -34,7 +37,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:background="#F6F6F6"
-        android:text="Corso :" />
+        android:text="Corso :"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtCorso"
@@ -44,7 +49,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:text="TextView"
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/textView11"
@@ -54,7 +60,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:background="#F6F6F6"
-        android:text="Data :" />
+        android:text="Data :"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtData"
@@ -64,7 +72,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:text="TextView"
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/textView13"
@@ -74,7 +83,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:background="#F6F6F6"
-        android:text="Inizio :" />
+        android:text="Inizio :"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtInizio"
@@ -84,7 +95,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:text="TextView"
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/textView15"
@@ -94,7 +106,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:background="#F6F6F6"
-        android:text="Fine :" />
+        android:text="Fine :"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtFine"
@@ -104,7 +118,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:text="TextView"
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/tvOggetto"
@@ -114,7 +129,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:background="#F6F6F6"
-        android:text="Oggetto" />
+        android:text="Oggetto :"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtOggetto"
@@ -125,7 +142,8 @@
         android:layout_marginRight="10dp"
         android:minLines="2"
         android:text="TextView"
-        android:textAlignment="textEnd" />
+        android:textAlignment="textStart"
+        android:textSize="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +25,7 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
     Context con;
     String id_ricevimento;
     String status;
+    String azione;
 
     public ProfEventDialog (@NonNull Context context) {
         super(context);
@@ -53,8 +55,6 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
         btnConferma.setOnClickListener(this);
         btnRifiuta.setOnClickListener(this);
         btnFine.setOnClickListener(this);
-
-        Log.i("DIALOG",status);
 
 
 
@@ -100,22 +100,31 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        HandleEvent handleEvent;
         switch (v.getId()){
             case R.id.btnElimina:
-
+                azione = "Elimina";
+                handleEvent = new HandleEvent(azione);
+                handleEvent.execute();
+                dismiss();
                 break;
 
             case R.id.btnConferma:
-
+                azione = "Conferma";
+                handleEvent = new HandleEvent(azione);
+                handleEvent.execute();
+                dismiss();
                 break;
 
             case R.id.btnRifiuta:
-
+                azione = "Rifiuta";
+                handleEvent = new HandleEvent(azione);
+                handleEvent.execute();
+                dismiss();
                 break;
 
             case R.id.btnFine:
                 dismiss();
-
                 break;
         }
 
@@ -199,13 +208,20 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
 
     private class HandleEvent extends AsyncTask<Void, Void, String>{
 
+        String azione = "";
+
+        public HandleEvent(String action){
+            super();
+            this.azione = action;
+        }
+
         @Override
         protected String doInBackground(Void... voids) {
 
             HttpURLConnection client = null;
             String json_string = "";
             try {
-                URL url = new URL("http://pmapp.altervista.org/cancella_ricevimento.php?" + "id=" + id_ricevimento);
+                URL url = new URL("http://pmapp.altervista.org/gestione_ricevimento.php?" + "id=" + id_ricevimento + "&azione=" + azione);
                 client = (HttpURLConnection) url.openConnection();
                 client.setRequestMethod("GET");
                 client.setDoInput(true);
@@ -224,6 +240,16 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
 
         @Override
         protected void onPostExecute(String s) {
+            switch (s){
+                case "-1":
+                    Toast.makeText(con, "Errore: operazione fallita (-1)", Toast.LENGTH_LONG).show();
+                    break; //richiesta fallita
+
+                default:
+                    Toast.makeText(con, "Operazione eseguita!", Toast.LENGTH_LONG).show();
+                    break;
+            }
+
 
         }
     }

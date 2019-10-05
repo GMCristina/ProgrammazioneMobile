@@ -54,6 +54,9 @@ public class ProfHomePageActivity extends AppCompatActivity {
     ArrayList<String> eventIdArray;
     ArrayList<String> eventStatusArray;
 
+    int[] stati_pos = {-1, 0, 1, 2, 4, 5};
+    boolean first_download = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,8 +98,8 @@ public class ProfHomePageActivity extends AppCompatActivity {
                     });
                     sed.getDataAndShow(id_ric,status);
                     Window w = sed.getWindow();
-                    // w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                   // w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                 }
             }
         });
@@ -128,18 +131,18 @@ public class ProfHomePageActivity extends AppCompatActivity {
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("ITEM SELECTED","ITEM SELECTED");
-
 
 
                 if(position == 0){
-                    /*DownloadSlotProf downloadSlot = new DownloadSlotProf();
-                    downloadSlot.execute(list);
-                    listAdapter = new CustomListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
-                    if(list != null)
-                        list.setAdapter(listAdapter);
-
-                     */
+                    if(first_download) {
+                        DownloadSlotProf downloadSlot = new DownloadSlotProf();
+                        downloadSlot.execute(list);
+                        first_download = false;
+                    } else {
+                        listAdapter = new CustomListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
+                        if(list != null)
+                            list.setAdapter(listAdapter);
+                    }
                 } else {
                     ArrayList<String> filtredEventDateArray = new ArrayList<>();
                     ArrayList<String> filtredEventNameArray = new ArrayList<>();
@@ -148,7 +151,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
                     ArrayList<String> filtredEventStatusArray = new ArrayList<>();
 
                     for (int i = 0; i < eventIdArray.size(); i++) {
-                        if (eventStatusArray.get(i).equals(Integer.toString(position - 1))) {
+                        if (eventStatusArray.get(i).equals(Integer.toString(stati_pos[position]))) {
                             filtredEventIdArray.add(eventIdArray.get(i));
                             filtredEventNameArray.add(eventNameArray.get(i));
                             filtredEventDateArray.add(eventDateArray.get(i));

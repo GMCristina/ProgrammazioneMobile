@@ -83,14 +83,19 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 status.setText("Prenotato");
                 break;
             case "4": // confermato
-                status.setText("Prenotato(app)");
+                status.setText("Approvato");
                 break;
             case "0": // libero
                 status.setText("Libero");
               //  status.setTextColor(Color.GREEN);
                 break;
+            case "5":
+                status.setText("Eliminato"); //eliminato da studente
+                break;
 
-
+            case "6":
+                status.setText("Deprecato");
+                break;
         }
         return rowView;
 
