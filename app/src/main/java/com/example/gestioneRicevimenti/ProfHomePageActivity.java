@@ -39,7 +39,7 @@ import java.util.Iterator;
 
 public class ProfHomePageActivity extends AppCompatActivity {
 
-    StudentEventDialog sed;
+    ProfEventDialog sed;
 
 
     ConnectionReceiver receiver;
@@ -69,42 +69,6 @@ public class ProfHomePageActivity extends AppCompatActivity {
 
         sp = findViewById(R.id.spinnerStati);
 
-        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if(position == 0){
-                    listAdapter = new CustomListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
-                    if(list != null)
-                        list.setAdapter(listAdapter);
-                } else {
-                    ArrayList<String> filtredEventDateArray = new ArrayList<>();
-                    ArrayList<String> filtredEventNameArray = new ArrayList<>();
-                    ArrayList<String> filtredEventHoursArray = new ArrayList<>();
-                    ArrayList<String> filtredEventIdArray = new ArrayList<>();
-                    ArrayList<String> filtredEventStatusArray = new ArrayList<>();
-
-                    for (int i = 0; i < eventIdArray.size(); i++) {
-                        if (eventStatusArray.get(i).equals(Integer.toString(position - 1))) {
-                            filtredEventIdArray.add(eventIdArray.get(i));
-                            filtredEventNameArray.add(eventNameArray.get(i));
-                            filtredEventDateArray.add(eventDateArray.get(i));
-                            filtredEventHoursArray.add(eventHoursArray.get(i));
-                            filtredEventStatusArray.add(eventStatusArray.get(i));
-                        }
-                    }
-
-                    listAdapter = new CustomListAdapter(ProfHomePageActivity.this, filtredEventDateArray, filtredEventNameArray, filtredEventHoursArray, filtredEventIdArray, filtredEventStatusArray);
-                    if (list != null)
-                        list.setAdapter(listAdapter);
-                }
-        }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -117,7 +81,8 @@ public class ProfHomePageActivity extends AppCompatActivity {
                 if(receiver.CheckConnection(ProfHomePageActivity.this)) {
                     String id_ric = listAdapter.getOggetto(i);
                     String status = listAdapter.getStatus(i);
-                    sed = new StudentEventDialog(ProfHomePageActivity.this);
+                    Log.i("CLICK",status + "-" + id_ric);
+                    sed = new ProfEventDialog(ProfHomePageActivity.this);
                     sed.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
@@ -128,9 +93,10 @@ public class ProfHomePageActivity extends AppCompatActivity {
                             listAdapter.notifyDataSetChanged();
                         }
                     });
-                    sed.dataShow(id_ric);
+                    sed.getDataAndShow(id_ric,status);
                     Window w = sed.getWindow();
-                    w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    // w.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 }
             }
         });
@@ -158,6 +124,51 @@ public class ProfHomePageActivity extends AppCompatActivity {
 
             }
         });
+
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("ITEM SELECTED","ITEM SELECTED");
+
+
+
+                if(position == 0){
+                    /*DownloadSlotProf downloadSlot = new DownloadSlotProf();
+                    downloadSlot.execute(list);
+                    listAdapter = new CustomListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
+                    if(list != null)
+                        list.setAdapter(listAdapter);
+
+                     */
+                } else {
+                    ArrayList<String> filtredEventDateArray = new ArrayList<>();
+                    ArrayList<String> filtredEventNameArray = new ArrayList<>();
+                    ArrayList<String> filtredEventHoursArray = new ArrayList<>();
+                    ArrayList<String> filtredEventIdArray = new ArrayList<>();
+                    ArrayList<String> filtredEventStatusArray = new ArrayList<>();
+
+                    for (int i = 0; i < eventIdArray.size(); i++) {
+                        if (eventStatusArray.get(i).equals(Integer.toString(position - 1))) {
+                            filtredEventIdArray.add(eventIdArray.get(i));
+                            filtredEventNameArray.add(eventNameArray.get(i));
+                            filtredEventDateArray.add(eventDateArray.get(i));
+                            filtredEventHoursArray.add(eventHoursArray.get(i));
+                            filtredEventStatusArray.add(eventStatusArray.get(i));
+                        }
+                    }
+
+                    listAdapter = new CustomListAdapter(ProfHomePageActivity.this, filtredEventDateArray, filtredEventNameArray, filtredEventHoursArray, filtredEventIdArray, filtredEventStatusArray);
+                    if (list != null)
+                        list.setAdapter(listAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
 
         DownloadSlotProf downloadSlot = new DownloadSlotProf();
