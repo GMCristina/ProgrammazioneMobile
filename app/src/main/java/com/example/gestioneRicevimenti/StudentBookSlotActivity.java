@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
@@ -88,7 +87,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
         id_studente = sp.getString("id_utente", null);
 
-        Button btnRichiedi = findViewById(R.id.btnRichiediRicevimento);
+        Button btnRichiedi = findViewById(R.id.btnAnnulla);
         btnRichiedi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

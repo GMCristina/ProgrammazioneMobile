@@ -81,8 +81,8 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(receiver, filter);
 
-        Button btnrichiedi = findViewById(R.id.btnrichiedi);
-        Button btnannulla= findViewById(R.id.btnRichiediRicevimento);
+        Button btnrichiedi = findViewById(R.id.btnInserisci);
+        Button btnannulla= findViewById(R.id.btnAnnulla);
         btnrichiedi.setOnClickListener(this);
         btnannulla.setOnClickListener(this);
 
@@ -218,14 +218,14 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnrichiedi:
+            case R.id.btnInserisci:
                 if(receiver.CheckConnection(StudentNewEventActivity.this)) {
                     SlotRequest slot_request = new SlotRequest();
                     slot_request.execute();
                     this.finish();
                 }
                 break;
-            case R.id.btnRichiediRicevimento:
+            case R.id.btnAnnulla:
                 this.finish();
                 break;
         }

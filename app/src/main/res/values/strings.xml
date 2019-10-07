@@ -25,7 +25,26 @@
         <item> 2 h </item>
     </string-array>
 
-    <string-array name="stati">
+    <string-array name="durataTot">
+        <item> 30 min </item>
+        <item> 1 h </item>
+        <item> 1.5 h </item>
+        <item> 2 h </item>
+        <item> 2.5 h </item>
+        <item> 3 h </item>
+        <item> 3.5 h </item>
+        <item> 4 h </item>
+    </string-array>
+
+    <string-array name="durataSlot">
+        <item> 15 min </item>
+        <item> 5 min </item>
+        <item> 10 min </item>
+        <item> 20 min </item>
+        <item> 30 min </item>
+    </string-array>
+
+    <string-array name = "stati">
         <item>Tutti</item>
         <item>Liberi</item>
         <item>Prenotati</item>

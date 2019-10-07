@@ -142,7 +142,7 @@
         android:layout_marginTop="0dp">
 
         <Button
-            android:id="@+id/btnRichiediRicevimento"
+            android:id="@+id/btnAnnulla"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="204dp"
             android:layout_height="wrap_content"
@@ -150,12 +150,12 @@
             android:layout_marginEnd="1dp"
             android:text="Annulla"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toStartOf="@+id/btnrichiedi"
+            app:layout_constraintEnd_toStartOf="@+id/btnInserisci"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnrichiedi"
+            android:id="@+id/btnInserisci"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="204dp"
             android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
             android:layout_marginEnd="1dp"
             android:text="Richiedi"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnRichiediRicevimento"
+            app:layout_constraintStart_toEndOf="@+id/btnAnnulla"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
