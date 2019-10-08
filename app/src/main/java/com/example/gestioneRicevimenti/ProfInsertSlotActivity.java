@@ -37,7 +37,7 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
     DatePickerDialog d;
     TimePicker tp;
 
-    Spinner spdurata;
+    Spinner spdurataTot;
     Spinner spdurataSlot;
 
     Button btndata;
@@ -64,40 +64,36 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
         Button btninserisci = findViewById(R.id.btnInserisci);
         Button btnannulla= findViewById(R.id.btnAnnulla);
         btndata = findViewById(R.id.btndata);
-        spdurata = findViewById(R.id.spinnerdurata);
+        spdurataTot = findViewById(R.id.spinnerdurataTot);
         spdurataSlot = findViewById(R.id.spinnerdurataSlot);
         btninserisci.setOnClickListener(this);
         btnannulla.setOnClickListener(this);
 
         durataTot = getResources().getStringArray(R.array.durataTot)[0];
         String[] st = durataTot.split(" ");
-        Log.i("SPINNER", st[0] + "-" + st[1]);
         if(st[1].equals("h"))
-            durataTot = Integer.toString((int)(Float.parseFloat(st[0])) * 60);
+            durataTot = Integer.toString((int)(Float.parseFloat(st[0]) * 60));
         else
             durataTot = st[0];
-        Log.i("SPINNER:TOT",durataTot);
 
         durataSlot = getResources().getStringArray(R.array.durataSlot)[0];
         String[] st1 = durataSlot.split(" ");
-        Log.i("SPINNER", st1[0] + "-" + st1[1]);
         if(st1[1].equals("h"))
             durataSlot = Integer.toString((Integer.parseInt(st1[0])) * 60);
         else
             durataSlot = st1[0];
-        Log.i("SPINNER:SLOT",durataSlot);
 
-        spdurata.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+        spdurataTot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("SPINNER","OnItemSelected");
-                durataTot = spdurata.getSelectedItem().toString();
+                durataTot = spdurataTot.getSelectedItem().toString();
                 String[] str = durataTot.split(" ");
                 if(str[1].equals("h"))
-                    durataTot = Float.toString((int) (Float.parseFloat(str[0])) * 60);
+                    durataTot = Integer.toString((int)(Float.parseFloat(str[0]) * 60));
                 else
                     durataTot = str[0];
-                Log.i("SPINNER", str[0] + "-" + str[1]);
 
             }
 
@@ -111,15 +107,12 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
         spdurataSlot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("SPINNER","OnItemSelected");
                 durataSlot = spdurataSlot.getSelectedItem().toString();
                 String[] str1 = durataSlot.split(" ");
                 if(str1[1].equals("h"))
-                    durataTot = Integer.toString((Integer.parseInt(str1[0])) * 60);
+                    durataSlot = Integer.toString((Integer.parseInt(str1[0])) * 60);
                 else
-                    durataTot = str1[0];
-                Log.i("SPINNER", str1[0] + "-" + str1[1]);
-
+                    durataSlot = str1[0];
             }
 
             @Override
@@ -175,11 +168,10 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
         switch (view.getId()) {
             case R.id.btnInserisci:
                 if(receiver.CheckConnection(ProfInsertSlotActivity.this)) {
-
                     InsertSlot insert = new InsertSlot();
                     insert.execute();
-                    this.finish();
                 }
+                this.finish();
                 break;
             case R.id.btnAnnulla:
                 this.finish();

@@ -103,7 +103,6 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 if(receiver.CheckConnection(StudentHomePageActivity.this)) {
                     downloadevent = new DownloadEvent();
                     downloadevent.execute(list);
-                    listAdapter.notifyDataSetChanged();
                 }
                 swipe.setRefreshing(false);
 

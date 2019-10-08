@@ -19,23 +19,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfEventDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfEventDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfInsertSlotActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfInsertSlotActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_prof_insert_slot.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_prof_insert_slot.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -67,50 +58,48 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfInsertSlotActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1156">
-              <caret line="118" column="20" lean-forward="true" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
+            <state relative-caret-position="2431">
+              <caret line="173" column="16" selection-start-line="173" selection-start-column="16" selection-end-line="173" selection-end-column="16" />
               <folding>
-                <element signature="e#4459#4601#0" expanded="true" />
-                <element signature="e#4600#4601#0" expanded="true" />
-                <element signature="e#4667#4966#0" expanded="true" />
-                <element signature="e#4965#4966#0" expanded="true" />
+                <element signature="e#4813#4955#0" expanded="true" />
+                <element signature="e#4954#4955#0" expanded="true" />
+                <element signature="e#5021#5320#0" expanded="true" />
+                <element signature="e#5319#5320#0" expanded="true" />
+                <element signature="e#5873#6132#0" expanded="true" />
+                <element signature="e#6131#6132#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1539">
-              <caret line="95" column="52" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="52" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_prof_insert_slot.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="76" column="42" selection-start-line="76" selection-start-column="42" selection-end-line="76" selection-end-column="42" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="453">
+            <state relative-caret-position="1904">
               <caret line="112" column="16" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="40" />
             </state>
           </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
     </leaf>
@@ -126,8 +115,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>spinnerCorsiArray</find>
-      <find>corsi</find>
       <find>listAdapter</find>
       <find>shared</find>
       <find>chan</find>
@@ -156,6 +143,8 @@
       <find>StudentNewEventActivity</find>
       <find>spcorso</find>
       <find>durataTot</find>
+      <find>str</find>
+      <find>str1</find>
     </findStrings>
     <replaceStrings>
       <replace>eventHoursArray</replace>
@@ -201,11 +190,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_student_book_slot.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/prova.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_student_home_page_activity.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/student_event_dialog_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_prof_home_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentEventDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/prof_event_dialog_layout.xml" />
@@ -213,15 +200,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfHomePageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfEventDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_prof_insert_slot.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfInsertSlotActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="22" />
+    <option name="y" value="21" />
     <option name="width" value="1920" />
     <option name="height" value="1005" />
   </component>
@@ -232,7 +221,46 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ProgrammazioneMobile" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="ProgrammazioneMobile" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="ProgrammazioneMobile" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="gestioneRicevimenti" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProgrammazioneMobile" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="ProgrammazioneMobile" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="ProgrammazioneMobile" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -279,7 +307,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -527,7 +554,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570274936006</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Gestione ho Login + parziale gestione InsertActivity (NB:GESTIRE PRINNER)">
+      <created>1570484411748</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1570484411748</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -535,7 +569,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49585062" weight="0.22995952" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49585062" visible="true" weight="0.2672065" />
       <window_info id="Structure" order="2" sideWeight="0.5041494" side_tool="true" weight="0.23382173" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -543,15 +577,15 @@
       <window_info id="Resources Explorer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49473685" weight="0.9449378" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.49959514" visible="true" weight="0.37477797" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49473685" weight="0.3445826" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49959514" weight="0.1722913" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Android Profiler" order="3" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4993895" weight="0.4506579" />
       <window_info anchor="bottom" id="Terminal" order="5" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50526315" side_tool="true" weight="0.70515096" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4993895" weight="0.32871288" />
-      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.49554655" weight="0.3587922" />
+      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.49554655" visible="true" weight="0.053285968" />
       <window_info anchor="bottom" id="Find" order="9" sideWeight="0.4981685" weight="0.36394557" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4993895" weight="0.32871288" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" weight="0.49392712" />
@@ -564,7 +598,7 @@
     </layout>
     <layout-to-restore>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49585062" visible="true" weight="0.22995952" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49585062" visible="true" weight="0.13279352" />
       <window_info id="Structure" order="2" sideWeight="0.5041494" side_tool="true" weight="0.23382173" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -573,14 +607,14 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49473685" weight="0.9449378" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.49959514" visible="true" weight="0.37477797" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49959514" weight="0.37477797" />
       <window_info anchor="bottom" id="TODO" order="2" />
-      <window_info anchor="bottom" id="Android Profiler" order="3" />
+      <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4993895" weight="0.4506579" />
       <window_info anchor="bottom" id="Terminal" order="5" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50526315" side_tool="true" weight="0.70515096" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4993895" weight="0.32871288" />
-      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.49554655" weight="0.3587922" />
+      <window_info active="true" anchor="bottom" id="Build" order="8" sideWeight="0.49554655" visible="true" weight="0.1634103" />
       <window_info anchor="bottom" id="Find" order="9" sideWeight="0.4981685" weight="0.36394557" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4993895" weight="0.32871288" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" weight="0.49392712" />
@@ -664,7 +698,8 @@
     <MESSAGE value="gestione login professore" />
     <MESSAGE value="- implementazione home professore&#10;- Costruzione layout info event dialog lato professore" />
     <MESSAGE value="Parziale implementazione ProfEventDialog" />
-    <option name="LAST_COMMIT_MESSAGE" value="Parziale implementazione ProfEventDialog" />
+    <MESSAGE value="Gestione ho Login + parziale gestione InsertActivity (NB:GESTIRE PRINNER)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gestione ho Login + parziale gestione InsertActivity (NB:GESTIRE PRINNER)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -696,8 +731,8 @@
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/text/format/DateFormat.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/book_slot_menu.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_student_home_page_activity.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo2_round.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_logo2_round.png" />
@@ -712,12 +747,12 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_logo2_foreground.png" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_logo2_round.png" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/slots_listview_layout.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/login.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground_logo.png" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png">
@@ -735,20 +770,12 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/calendar.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_student_book_slot.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_row.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml">
       <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ConnectionReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -769,20 +796,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/book_slot_dialog_layout.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/home_menu.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/events_listview_layout.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentBookSlotActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -792,33 +819,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_home_page_activity.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" selection-start-line="33" selection-end-line="33" selection-end-column="30" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/widget/ListView.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/student_event_dialog_layout.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_prof_home_page.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="12" lean-forward="true" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/prof_event_dialog_layout.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentEventDialog.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -850,13 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-974">
-          <caret line="88" column="38" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/CustomListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -868,6 +888,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11">
           <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
@@ -876,7 +897,6 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfEventDialog.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -898,41 +918,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="112" column="16" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="40" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_prof_insert_slot.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="76" column="42" selection-start-line="76" selection-start-column="42" selection-end-line="76" selection-end-column="42" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        <state relative-caret-position="-4">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_prof_insert_slot.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentHomePageActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/StudentNewEventActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1539">
+        <state relative-caret-position="-1462">
           <caret line="95" column="52" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="52" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_new_event.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="112" column="16" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="40" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_student_book_slot.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/gestioneRicevimenti/ProfInsertSlotActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1156">
-          <caret line="118" column="20" lean-forward="true" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
+        <state relative-caret-position="2431">
+          <caret line="173" column="16" selection-start-line="173" selection-start-column="16" selection-end-line="173" selection-end-column="16" />
           <folding>
-            <element signature="e#4459#4601#0" expanded="true" />
-            <element signature="e#4600#4601#0" expanded="true" />
-            <element signature="e#4667#4966#0" expanded="true" />
-            <element signature="e#4965#4966#0" expanded="true" />
+            <element signature="e#4813#4955#0" expanded="true" />
+            <element signature="e#4954#4955#0" expanded="true" />
+            <element signature="e#5021#5320#0" expanded="true" />
+            <element signature="e#5319#5320#0" expanded="true" />
+            <element signature="e#5873#6132#0" expanded="true" />
+            <element signature="e#6131#6132#0" expanded="true" />
           </folding>
         </state>
       </provider>
