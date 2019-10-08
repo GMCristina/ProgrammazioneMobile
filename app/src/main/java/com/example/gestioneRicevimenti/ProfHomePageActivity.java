@@ -108,8 +108,10 @@ public class ProfHomePageActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProfHomePageActivity.this, ProfInsertSlotActivity.class);
-                startActivity(i);
+                if(receiver.CheckConnection(ProfHomePageActivity.this)) {
+                    Intent i = new Intent(ProfHomePageActivity.this, ProfInsertSlotActivity.class);
+                    startActivity(i);
+                }
             }
         });
 
