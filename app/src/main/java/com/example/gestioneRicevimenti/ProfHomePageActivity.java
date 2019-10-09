@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -104,6 +105,8 @@ public class ProfHomePageActivity extends AppCompatActivity {
             }
         });
 
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +129,26 @@ public class ProfHomePageActivity extends AppCompatActivity {
                     sp.setSelection(0);
                 }
                 swipe.setRefreshing(false);
+
+            }
+        });
+
+        list.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                if(i==0){
+                    swipe.setEnabled(true);
+                    Log.i("SCROLL","TRUE , "+i);
+                }
+                else {
+                    swipe.setEnabled(false);
+                    Log.i("SCROLL","FALSE, "+i);
+                }
 
             }
         });
