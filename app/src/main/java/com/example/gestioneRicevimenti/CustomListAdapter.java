@@ -29,7 +29,6 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     private String previous = "";
 
-    private int previous_position = -1;
 
 
     public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours, ArrayList<String> id, ArrayList<String> stato){
@@ -67,16 +66,8 @@ public class CustomListAdapter extends ArrayAdapter<String> {
             eventText.setText(eventName.get(position));
         oraText.setText(eventHours.get(position));
 
-
-        if (previous_position < position) { // scroll down
-            if (previous.equals(eventDate.get(position))) {
-                separatorText.setVisibility(View.GONE);
-            }
-            previous = eventDate.get(position);
-        } else { // scroll up
-            if (position > 0 && (eventDate.get(position-1).equals(eventDate.get(position)))) {
-                    separatorText.setVisibility(View.GONE);
-                }
+        if (position > 0 && (eventDate.get(position-1).equals(eventDate.get(position)))) {
+            separatorText.setVisibility(View.GONE);
         }
 
         switch (eventStatus.get(position)) {
@@ -105,7 +96,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 break;
         }
 
-        previous_position = position;
+       // previous_position = position;
         return rowView;
 
     }
