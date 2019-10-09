@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     private String previous = "";
 
-    static boolean flag = false;
+    private int previous_position = -1;
 
 
     public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours, ArrayList<String> id, ArrayList<String> stato){
@@ -44,16 +45,15 @@ public class CustomListAdapter extends ArrayAdapter<String> {
     }
 
 
+
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+        Log.i("GETVIEW",Integer.toString(position));
+
+
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.events_listview_layout, null);
-
-//        if(flag){
-//            flag = true;
-//        }
-//        flag = true;
-
 
         //this code gets references to objects in the events_listview_layout.xml file
         TextView separatorText = (TextView) rowView.findViewById(R.id.separator);
@@ -67,10 +67,17 @@ public class CustomListAdapter extends ArrayAdapter<String> {
             eventText.setText(eventName.get(position));
         oraText.setText(eventHours.get(position));
 
-        if(previous.equals(eventDate.get(position))){
-            separatorText.setVisibility(View.GONE);
+
+        if (previous_position < position) { // scroll down
+            if (previous.equals(eventDate.get(position))) {
+                separatorText.setVisibility(View.GONE);
+            }
+            previous = eventDate.get(position);
+        } else { // scroll up
+            if (position > 0 && (eventDate.get(position-1).equals(eventDate.get(position)))) {
+                    separatorText.setVisibility(View.GONE);
+                }
         }
-        previous = eventDate.get(position);
 
         switch (eventStatus.get(position)) {
             case "2": // richiesto
@@ -97,6 +104,8 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 status.setText("Deprecato");
                 break;
         }
+
+        previous_position = position;
         return rowView;
 
     }

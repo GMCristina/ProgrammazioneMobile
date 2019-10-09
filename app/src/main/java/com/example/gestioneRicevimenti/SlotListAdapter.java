@@ -3,6 +3,7 @@ package com.example.gestioneRicevimenti;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class SlotListAdapter extends ArrayAdapter<String> {
     private ArrayList<String> eventHours;
 
     private String previous = "";
+    private int previous_position = -1;
 
 
     public SlotListAdapter(Activity context, ArrayList<String> id_ricevimento, ArrayList<String> date, ArrayList<String> hours){
@@ -37,6 +39,7 @@ public class SlotListAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        Log.i("GETVIEW", Integer.toString(position));
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.slots_listview_layout, null);
 
@@ -49,13 +52,27 @@ public class SlotListAdapter extends ArrayAdapter<String> {
         separatorText.setText(eventDate.get(position));
         oraText.setText(eventHours.get(position));
 
+        if (previous_position < position) { // scroll down
+            if (previous.equals(eventDate.get(position))) {
+                separatorText.setVisibility(View.GONE);
+            }
+            previous = eventDate.get(position);
+        } else { // scroll up
+            if (position > 0 && (eventDate.get(position-1).equals(eventDate.get(position)))) {
+                separatorText.setVisibility(View.GONE);
+            }
+        }
+
+        /*
         if(previous.equals(eventDate.get(position))){
             separatorText.setVisibility(View.GONE);
         }
         previous = eventDate.get(position);
+         */
 
 
 
+        previous_position = position;
         return rowView;
 
     }
