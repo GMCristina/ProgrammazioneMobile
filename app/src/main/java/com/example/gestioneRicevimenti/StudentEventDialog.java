@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -28,6 +29,8 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
 
     Context con;
     String id_ricevimento;
+
+    ProgressBar progBar;
 
     public StudentEventDialog(@NonNull Context context) {
         super(context);
@@ -46,6 +49,7 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
         btnElimina.setOnClickListener(this);
         btnFine.setOnClickListener(this);
 
+        progBar = findViewById(R.id.progressBar3);
         TextView docente = findViewById(R.id.docente);
         TextView corso = findViewById(R.id.corso);
         TextView data = findViewById(R.id.data);
@@ -173,6 +177,7 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
                     }
                 }
             }
+            progBar.setVisibility(View.GONE);
         }
     }
 

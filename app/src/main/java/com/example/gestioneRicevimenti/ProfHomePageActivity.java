@@ -182,6 +182,13 @@ public class ProfHomePageActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DownloadSlotProf download = new DownloadSlotProf();
+        download.execute(list);
+    }
+
     @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
