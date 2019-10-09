@@ -5,9 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +26,7 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
     String id_ricevimento;
     String status;
     String azione;
+    ProgressBar pbDownload;
 
     public ProfEventDialog (@NonNull Context context) {
         super(context);
@@ -50,6 +51,8 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
         TextView txtInizio = findViewById(R.id.txtInizio);
         TextView txtFine = findViewById(R.id.txtFine);
         TextView txtOggetto = findViewById(R.id.txtOggetto);
+
+        pbDownload = findViewById(R.id.pbProfDialog);
 
         btnElimina.setOnClickListener(this);
         btnConferma.setOnClickListener(this);
@@ -212,6 +215,7 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
                     }
                 }
             }
+            pbDownload.setVisibility(View.GONE);
         }
     }
 
