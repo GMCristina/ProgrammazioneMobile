@@ -359,13 +359,18 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
         @Override
         protected void onPostExecute(String s) {
             switch (s){
-                case "-1":
-                    Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: riprova (-1)", Toast.LENGTH_LONG).show();
-                    break; //richiesta fallita
-
                 case "1":
                     Toast.makeText(StudentNewEventActivity.this, "Richiesta effettuata correttamente", Toast.LENGTH_LONG).show();
                     break; // richiesta effettuata
+
+                case "-2":
+                    Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: riprova (-2)", Toast.LENGTH_LONG).show();
+                    break; // errore query
+
+                case "-3":
+                    Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: Hai già richiesto un ricevimento con questo docente in questo giorno", Toast.LENGTH_LONG).show();
+                    break; // errore query
+
 
                 case "":
                     Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: dati mancanti", Toast.LENGTH_LONG).show();

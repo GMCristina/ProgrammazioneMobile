@@ -93,7 +93,12 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
                 btnRifiuta.setVisibility(View.GONE);
                 break;
 
-             default:
+            case "6":
+                btnConferma.setVisibility(View.GONE);
+                btnRifiuta.setVisibility(View.GONE);
+                break;
+
+            default:
                 break;
         }
 

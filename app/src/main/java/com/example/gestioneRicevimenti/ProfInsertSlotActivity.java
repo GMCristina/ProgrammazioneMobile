@@ -138,13 +138,13 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
         d = new DatePickerDialog(ProfInsertSlotActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                data = dayOfMonth + "/" + Integer.toString(month+1) + "/" + year;
+                data = dayOfMonth + "-" + Integer.toString(month+1) + "-" + year;
                 btndata.setText(data);
             }
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
         d.getDatePicker().setMinDate(c.getTimeInMillis());
 
-        data = c.get(Calendar.DAY_OF_MONTH) + "/" +  Integer.toString(c.get(Calendar.MONTH) + 1) + "/" + c.get(Calendar.YEAR);
+        data = c.get(Calendar.DAY_OF_MONTH) + "-" +  Integer.toString(c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.YEAR);
 
         tp = findViewById(R.id.timepicker);
         tp.setIs24HourView(true);
@@ -193,7 +193,7 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
                 res_code = "1";
                 Log.i("SPINNER:", id_prof  + "," + data + "," + inizio + "," + durataTot + "," + durataSlot );
 
-                /*try {
+                try {
                     URL url = new URL("http://pmapp.altervista.org/inserimento_slot.php");
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("POST");
@@ -230,8 +230,6 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
 
 
                 }
-
-                 */
             }
 
 

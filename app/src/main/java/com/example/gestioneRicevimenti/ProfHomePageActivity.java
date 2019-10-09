@@ -275,7 +275,10 @@ public class ProfHomePageActivity extends AppCompatActivity {
                     try {
                         JSONObject value = json_data.getJSONObject(key);
                         eventDateArray.add(value.getString("giorno"));
-                        eventNameArray.add(value.getString("nome") + " " + value.getString("cognome"));
+                        if(value.getString("stato").equals("0"))
+                            eventNameArray.add("Nessuno studente");
+                        else
+                            eventNameArray.add(value.getString("nome") + " " + value.getString("cognome"));
                         eventHoursArray.add(value.getString("inizio") + " - " + value.getString("fine"));
                         eventIdArray.add(value.getString("id_ricevimento"));
                         eventStatusArray.add(value.getString("stato"));
