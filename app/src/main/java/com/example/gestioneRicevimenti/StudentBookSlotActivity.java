@@ -247,7 +247,10 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                 Intent i = new Intent(this,LoginActivity.class);
                 startActivity(i);
                 break;
-            case R.id.info : break;
+            case R.id.info :
+                Intent j = new Intent (StudentBookSlotActivity.this ,InfoActivity.class);
+                startActivity(j);
+                break;
             case R.id.refresh:
                 if(receiver.CheckConnection(StudentBookSlotActivity.this)) {
                     DownloadSpinnerDocente dsc = new DownloadSpinnerDocente();
@@ -257,8 +260,8 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.home:
-                Intent j = new Intent(StudentBookSlotActivity.this, StudentHomePageActivity.class);
-                startActivity(j);
+                Intent h = new Intent(StudentBookSlotActivity.this, StudentHomePageActivity.class);
+                startActivity(h);
                 break;
 
             default: Log.i ("MENU","Default switch item");

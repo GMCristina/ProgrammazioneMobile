@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -78,6 +79,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         list = findViewById(R.id.slotList);
+
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -214,7 +216,10 @@ public class ProfHomePageActivity extends AppCompatActivity {
                 Intent i = new Intent(this,LoginActivity.class);
                 startActivity(i);
                 break;
-            case R.id.info : break;
+            case R.id.info :
+                Intent j = new Intent (ProfHomePageActivity.this ,InfoActivity.class);
+                startActivity(j);
+                break;
             case R.id.refresh:
                 if(receiver.CheckConnection(ProfHomePageActivity.this)) {
 

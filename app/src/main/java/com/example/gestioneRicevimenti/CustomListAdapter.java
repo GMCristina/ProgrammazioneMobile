@@ -70,6 +70,8 @@ public class CustomListAdapter extends ArrayAdapter<String> {
             separatorText.setVisibility(View.GONE);
         }
 
+        Log.i("GETVIEW", separatorText.getText().toString());
+
         switch (eventStatus.get(position)) {
             case "2": // richiesto
                 status.setText("Richiesto");

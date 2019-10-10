@@ -144,7 +144,10 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 Intent i = new Intent(this,LoginActivity.class);
                 startActivity(i);
                 break;
-            case R.id.info : break;
+            case R.id.info :
+                Intent j = new Intent (StudentHomePageActivity.this ,InfoActivity.class);
+                startActivity(j);
+                break;
             case R.id.refresh:
                 if(receiver.CheckConnection(StudentHomePageActivity.this)) {
                     downloadevent = new DownloadEvent();
