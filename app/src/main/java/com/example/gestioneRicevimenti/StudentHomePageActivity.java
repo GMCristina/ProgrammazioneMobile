@@ -30,7 +30,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
     ConnectionReceiver receiver;
 
     ListView list;
-    CustomListAdapter listAdapter;
+    HomePageListAdapter listAdapter;
     HttpURLConnection client = null;
     DownloadEvent downloadevent;
 
@@ -116,7 +115,6 @@ public class StudentHomePageActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("OnResume", "onresume");
             downloadevent = new DownloadEvent();
             downloadevent.execute(list);
     }
@@ -223,7 +221,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
                     }
                 }
             }
-            listAdapter = new CustomListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
+            listAdapter = new HomePageListAdapter(StudentHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
             if(list != null)
                 list.setAdapter(listAdapter);
         }

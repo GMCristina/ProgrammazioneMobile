@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomListAdapter extends ArrayAdapter<String> {
+public class HomePageListAdapter extends ArrayAdapter<String> {
 
     private Activity context;
 
@@ -27,11 +27,8 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     private ArrayList<String> eventStatus;
 
-    private String previous = "";
 
-
-
-    public CustomListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours, ArrayList<String> id, ArrayList<String> stato){
+    public HomePageListAdapter(Activity context, ArrayList<String> date, ArrayList<String> event, ArrayList<String> hours, ArrayList<String> id, ArrayList<String> stato){
 
         super(context,R.layout.events_listview_layout, date);
         this.context = context;
@@ -47,10 +44,6 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        Log.i("GETVIEW",Integer.toString(position));
-
-
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.events_listview_layout, null);
 
@@ -69,8 +62,6 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         if (position > 0 && (eventDate.get(position-1).equals(eventDate.get(position)))) {
             separatorText.setVisibility(View.GONE);
         }
-
-        Log.i("GETVIEW", separatorText.getText().toString());
 
         switch (eventStatus.get(position)) {
             case "2": // richiesto
@@ -98,7 +89,6 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 break;
         }
 
-       // previous_position = position;
         return rowView;
 
     }

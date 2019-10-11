@@ -22,14 +22,6 @@ public class SlotListAdapter extends ArrayAdapter<String> {
 
     private ArrayList<String> eventHours;
 
-    private String previous = "";
-    //private int previous_position_up =0;
-    //private int previous_position_down = 0;
-    //private int previous_position =-1;
-
-    String direzione;
-
-
     public SlotListAdapter(Activity context, ArrayList<String> id_ricevimento, ArrayList<String> date, ArrayList<String> hours){
 
         super(context,R.layout.slots_listview_layout, id_ricevimento);
@@ -43,7 +35,6 @@ public class SlotListAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Log.i("GETVIEW", Integer.toString(position));
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.slots_listview_layout, null);
 
@@ -56,43 +47,10 @@ public class SlotListAdapter extends ArrayAdapter<String> {
         separatorText.setText(eventDate.get(position));
         oraText.setText(eventHours.get(position));
 
-        /*
-        if(previous_position < position) {
-            direzione = "giù";
-            previous_position_up += 1;
-            previous_position_down +=1;
-            Log.i("SCROLL","giù");
-        } else {
-            direzione = "su";
-            Log.i("SCROLL","su");
-        }
-
-         */
-
-
-
-        /*if (previous_position < position) {
-            Log.i("SCROLL","giù"); // scroll down
-            if (previous.equals(eventDate.get(position))) {
-                separatorText.setVisibility(View.GONE);
-            }
-            previous = eventDate.get(position);
-        } else { // scroll up
-            Log.i("SCROLL","su");
-            if (position > 0 && (eventDate.get(position-1).equals(eventDate.get(position)))) {
-                separatorText.setVisibility(View.GONE);
-            }
-        }
-
-         */
-
         if (position > 0 && (eventDate.get(position-1).equals(eventDate.get(position)))) {
             separatorText.setVisibility(View.GONE);
         }
 
-
-
-        //previous_position = position;
         return rowView;
 
     }

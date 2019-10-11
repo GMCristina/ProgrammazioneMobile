@@ -125,9 +125,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         JSONObject obj = null;
         try {
             obj = new JSONObject(json_data);
-            Log.d("My App", obj.toString());
+            // Log.d("My App", obj.toString());
         } catch (Throwable t) {
-            Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
+            // Log.e("My App", "Could not parse malformed JSON: \"" + json_data + "\"");
         }
         return obj;
     }

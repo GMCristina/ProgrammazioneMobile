@@ -191,8 +191,6 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
 
             if ((!TextUtils.isEmpty(id_prof)) && (!TextUtils.isEmpty(data)) && (!TextUtils.isEmpty(inizio)) && (!TextUtils.isEmpty(durataSlot))&& (!TextUtils.isEmpty(durataTot))) {
                 res_code = "1";
-                Log.i("SPINNER:", id_prof  + "," + data + "," + inizio + "," + durataTot + "," + durataSlot );
-
                 try {
                     URL url = new URL("http://pmapp.altervista.org/inserimento_slot.php");
                     client = (HttpURLConnection) url.openConnection();

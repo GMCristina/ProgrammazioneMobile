@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
@@ -23,9 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -47,7 +44,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
     ConnectionReceiver receiver;
 
     ListView list;
-    CustomListAdapter listAdapter;
+    HomePageListAdapter listAdapter;
     Spinner sp;
 
     ArrayList<String> eventDateArray;
@@ -146,7 +143,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
                         downloadSlot.execute(list);
                         first_download = false;
                     } else {
-                        listAdapter = new CustomListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
+                        listAdapter = new HomePageListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
                         if(list != null)
                             list.setAdapter(listAdapter);
                     }
@@ -167,7 +164,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
                         }
                     }
 
-                    listAdapter = new CustomListAdapter(ProfHomePageActivity.this, filtredEventDateArray, filtredEventNameArray, filtredEventHoursArray, filtredEventIdArray, filtredEventStatusArray);
+                    listAdapter = new HomePageListAdapter(ProfHomePageActivity.this, filtredEventDateArray, filtredEventNameArray, filtredEventHoursArray, filtredEventIdArray, filtredEventStatusArray);
                     if (list != null)
                         list.setAdapter(listAdapter);
                 }
@@ -302,7 +299,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
                     }
                 }
             }
-            listAdapter = new CustomListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
+            listAdapter = new HomePageListAdapter(ProfHomePageActivity.this, eventDateArray, eventNameArray, eventHoursArray, eventIdArray, eventStatusArray);
             if(list != null)
                 list.setAdapter(listAdapter);
         }

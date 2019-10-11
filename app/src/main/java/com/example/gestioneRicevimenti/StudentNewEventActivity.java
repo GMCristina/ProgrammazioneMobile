@@ -347,12 +347,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                         client.disconnect();
                     }
                 }
-               Log.i("Dati:", id_studente + "," + id_corso + "," + id_docente + "," + data + "," + inizio + "," + durata + "," + oggetto );
             }
-
-
-
-
             return res_code;
         }
 

@@ -31,8 +31,6 @@ public class ConnectionReceiver extends BroadcastReceiver {
         e.putBoolean("isConnected", isConnected);
         e.apply();
 
-        Log.i("BR",Boolean.toString(isConnected));
-
         if(!isConnected && previous!=isConnected) {
             AlertDialog.Builder adbuilder = new AlertDialog.Builder(context);
             adbuilder.setTitle("Connessione Internet assente");
@@ -68,7 +66,6 @@ public class ConnectionReceiver extends BroadcastReceiver {
             AlertDialog alertdialog = adbuilder.create();
             alertdialog.show();
 
-            Log.i("CHECK CONNECTION",Boolean.toString(isConnected));
         }
         return isConnected;
     }

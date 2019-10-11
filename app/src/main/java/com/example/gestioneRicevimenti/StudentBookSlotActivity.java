@@ -405,7 +405,6 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     client.setDoInput(true);
                     InputStream in = client.getInputStream();
                     String json_string = ReadResponse.readStream(in);
-                    Log.i("SpinnerCorso", json_string);
                     json_data = ReadResponse.convert2JSON(json_string);
                 } catch (IOException e) {
                     e.printStackTrace();
