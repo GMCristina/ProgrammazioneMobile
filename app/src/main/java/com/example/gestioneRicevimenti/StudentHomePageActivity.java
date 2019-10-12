@@ -153,6 +153,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.home:
+                receiver.CheckConnection(StudentHomePageActivity.this);
                 break;
 
             default: Log.i ("MENU","Default switch item");

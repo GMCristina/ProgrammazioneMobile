@@ -227,6 +227,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.home:
+                receiver.CheckConnection(ProfHomePageActivity.this);
                 break;
 
             default: Log.i ("MENU","Default switch item");

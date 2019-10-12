@@ -2,7 +2,9 @@ package com.example.gestioneRicevimenti;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,10 +28,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText etmatricola;
     EditText etpsw;
 
+    ConnectionReceiver receiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        receiver = new ConnectionReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, filter);
 
         String file = getPackageName() + "login_file";
         SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
@@ -65,59 +74,60 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        String matricola = etmatricola.getText().toString().trim();
-        String passw = etpsw.getText().toString().trim();
-        HttpURLConnection client = null;
-        JSONObject json_data = null;
-        String data = "matricola=" + matricola + "&password=" + passw;
-        try {
-            URL url = new URL("http://pmapp.altervista.org/login.php?"+ data);
-            client = (HttpURLConnection) url.openConnection();
-            client.setRequestMethod("GET");
-            client.setDoInput(true);
-            InputStream in = client.getInputStream();
-            String json_string = ReadResponse.readStream(in);
-            json_data = convert2JSON(json_string);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally{
-            if (client!= null){
-                client.disconnect();
-            }
-        }
-
-        if(json_data!=null) {
-            Iterator<String> iter = json_data.keys();
-            while (iter.hasNext()) {
-                String key = iter.next();
-                try {
-                    JSONObject value = json_data.getJSONObject(key);
-                    String file = getPackageName() + "login_file";
-                    SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor e = sp.edit();
-                    e.putString("matricola", matricola);
-                    e.putString("password", passw);
-                    e.putString("id_utente", value.getString("id"));
-                    e.putString("tipo_utente", value.getString("tipo"));
-                    e.apply();
-                    switch (sp.getString("tipo_utente","")){
-                        case "s":
-                            Intent i = new Intent (LoginActivity.this ,StudentHomePageActivity.class);
-                            startActivity(i);
-                            break;
-                        case "p":
-                            Intent j = new Intent (LoginActivity.this ,ProfHomePageActivity.class);
-                            startActivity(j);
-                            break;
-                        default:
-                    }
-                } catch (JSONException e) {
-                    // Something went wrong!
+        if(receiver.CheckConnection(LoginActivity.this)) {
+            String matricola = etmatricola.getText().toString().trim();
+            String passw = etpsw.getText().toString().trim();
+            HttpURLConnection client = null;
+            JSONObject json_data = null;
+            String data = "matricola=" + matricola + "&password=" + passw;
+            try {
+                URL url = new URL("http://pmapp.altervista.org/login.php?" + data);
+                client = (HttpURLConnection) url.openConnection();
+                client.setRequestMethod("GET");
+                client.setDoInput(true);
+                InputStream in = client.getInputStream();
+                String json_string = ReadResponse.readStream(in);
+                json_data = convert2JSON(json_string);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (client != null) {
+                    client.disconnect();
                 }
             }
-        } else {
-            Toast.makeText(this, "LoginActivity fallito, matricola o/e password errate!", Toast.LENGTH_SHORT).show();
+
+            if (json_data != null) {
+                Iterator<String> iter = json_data.keys();
+                while (iter.hasNext()) {
+                    String key = iter.next();
+                    try {
+                        JSONObject value = json_data.getJSONObject(key);
+                        String file = getPackageName() + "login_file";
+                        SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor e = sp.edit();
+                        e.putString("matricola", matricola);
+                        e.putString("password", passw);
+                        e.putString("id_utente", value.getString("id"));
+                        e.putString("tipo_utente", value.getString("tipo"));
+                        e.apply();
+                        switch (sp.getString("tipo_utente", "")) {
+                            case "s":
+                                Intent i = new Intent(LoginActivity.this, StudentHomePageActivity.class);
+                                startActivity(i);
+                                break;
+                            case "p":
+                                Intent j = new Intent(LoginActivity.this, ProfHomePageActivity.class);
+                                startActivity(j);
+                                break;
+                            default:
+                        }
+                    } catch (JSONException e) {
+                        // Something went wrong!
+                    }
+                }
+            } else {
+                Toast.makeText(this, "LoginActivity fallito, matricola o/e password errate!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
