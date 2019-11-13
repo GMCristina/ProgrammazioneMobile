@@ -140,6 +140,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
                 SharedPreferences sp = getSharedPreferences(file, Context.MODE_PRIVATE);
                 sp.edit().clear().apply();
                 Intent i = new Intent(this,LoginActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
                 break;
             case R.id.info :

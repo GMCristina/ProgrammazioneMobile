@@ -87,7 +87,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         matricola = etmatricola.getText().toString().trim();
         passw = etpsw.getText().toString().trim();
         if(receiver.CheckConnection(LoginActivity.this)) {
-
             LoginRequest loginTask = new LoginRequest();
             loginTask.execute();
         }
