@@ -297,7 +297,7 @@ public class ProfHomePageActivity extends AppCompatActivity {
                         eventIdArray.add(value.getString("id_ricevimento"));
                         eventStatusArray.add(value.getString("stato"));
                     } catch (JSONException e) {
-                        // Something went wrong!
+
                     }
                 }
             }

@@ -197,7 +197,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                //NON FUNZIONA
+
                 receiver.CheckConnection(StudentBookSlotActivity.this);
             }
         });
@@ -214,7 +214,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                     }
                     DownloadSlot ds = new DownloadSlot();
                     ds.execute(listslot);
-                    //listAdapter.notifyDataSetChanged();
+
                 }
                 swipe.setRefreshing(false);
 
@@ -318,7 +318,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                         id_professori.add(value.getString("id_professore"));
                         spinnerDocenteArray.add(value.getString("nome") + " " + value.getString("cognome"));
                     } catch (JSONException e) {
-                        // Something went wrong!
+
                     }
                 }
             }
@@ -376,7 +376,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                         eventGiornoArray.add(value.getString("giorno"));
                         eventInizioFineArray.add(value.getString("inizio") + " - " + value.getString("fine"));
                     } catch (JSONException e) {
-                        // Something went wrong!
+
                     }
                 }
             }
@@ -434,7 +434,7 @@ public class StudentBookSlotActivity extends AppCompatActivity {
                         spinnerCorsiArray.add(value.getString("nome"));
                         spinnerIdCorsiArray.add(value.getString("id_corso"));
                     } catch (JSONException e) {
-                        // Something went wrong!
+
                     }
                 }
             }
@@ -489,23 +489,23 @@ public class StudentBookSlotActivity extends AppCompatActivity {
             switch (ret){
                 case "-1":
                     Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: lo slot è stato già prenotato", Toast.LENGTH_LONG).show();
-                    break; //slot prenotato
+                    break;
 
                 case "-2":
                     Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: riprova (-2)", Toast.LENGTH_LONG).show();
-                    break; // errore query
+                    break;
 
                 case "-3":
                     Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: Hai già prenotato un ricevimento con questo docente in questo giorno", Toast.LENGTH_LONG).show();
-                    break; // errore query
+                    break;
 
                 case "":
                     Toast.makeText(StudentBookSlotActivity.this, "Prenotazione fallita: dati mancanti", Toast.LENGTH_LONG).show();
-                    break; // errore generico
+                    break;
 
                 default:
                     Toast.makeText(StudentBookSlotActivity.this, "Prenotazione riuscita: lo slot è stato prenotato con successo!", Toast.LENGTH_LONG).show();
-                    break; // caso standard
+                    break;
             }
         }
     }

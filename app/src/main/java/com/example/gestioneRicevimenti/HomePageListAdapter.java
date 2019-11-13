@@ -64,24 +64,24 @@ public class HomePageListAdapter extends ArrayAdapter<String> {
         }
 
         switch (eventStatus.get(position)) {
-            case "2": // richiesto
+            case "2":
                 status.setText("Richiesto");
                 break;
-            case "3": // rifiutato
+            case "3":
                 status.setText("Rifiutato");
                 break;
-            case "1": // confermato
+            case "1":
                 status.setText("Prenotato");
                 break;
-            case "4": // confermato
+            case "4":
                 status.setText("Approvato");
                 break;
-            case "0": // libero
+            case "0":
                 status.setText("Libero");
               //  status.setTextColor(Color.GREEN);
                 break;
             case "5":
-                status.setText("Eliminato"); //eliminato da studente
+                status.setText("Eliminato");
                 break;
 
             case "6":

@@ -240,15 +240,15 @@ public class ProfInsertSlotActivity extends AppCompatActivity implements View.On
             switch (s) {
                 case "-1":
                     Toast.makeText(ProfInsertSlotActivity.this, "Inserimento fallita: riprova (-1)", Toast.LENGTH_LONG).show();
-                    break; //richiesta fallita
+                    break;
 
                 case "1":
                     Toast.makeText(ProfInsertSlotActivity.this, "Inserimento effettuata correttamente", Toast.LENGTH_LONG).show();
-                    break; // richiesta effettuata
+                    break;
 
                 case "":
                     Toast.makeText(ProfInsertSlotActivity.this, "Inserimento fallita: dati mancanti", Toast.LENGTH_LONG).show();
-                    break; // mancano dati
+                    break;
 
                 default:
                     break;

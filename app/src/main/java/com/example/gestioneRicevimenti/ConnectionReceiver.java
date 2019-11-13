@@ -39,8 +39,7 @@ public class ConnectionReceiver extends BroadcastReceiver {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
-                    //Intent intent = new Intent(context, StudentHomePageActivity.class);
-                    //context.startActivity(intent);
+
                 }
             });
             AlertDialog alertdialog = adbuilder.create();

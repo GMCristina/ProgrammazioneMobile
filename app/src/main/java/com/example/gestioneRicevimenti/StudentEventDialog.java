@@ -173,7 +173,7 @@ public class StudentEventDialog extends Dialog implements View.OnClickListener {
                         corso.setText((value.getString("corso")));
                         oggetto.setText(value.getString("oggetto"));
                     } catch (JSONException e) {
-                        // Something went wrong!
+
                     }
                 }
             }

@@ -157,7 +157,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 default:
                             }
                         } catch (JSONException e) {
-                            // Something went wrong!
+
                         }
                     }
                 } else {

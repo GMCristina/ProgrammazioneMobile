@@ -211,7 +211,7 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
                         corso.setText((value.getString("corso")));
                         oggetto.setText(value.getString("oggetto"));
                     } catch (JSONException e) {
-                        // Something went wrong!
+
                     }
                 }
             }
@@ -256,7 +256,7 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
             switch (s){
                 case "-1":
                     Toast.makeText(con, "Errore: operazione fallita (-1)", Toast.LENGTH_LONG).show();
-                    break; //richiesta fallita
+                    break;
 
                 default:
                     Toast.makeText(con, "Operazione eseguita!", Toast.LENGTH_LONG).show();

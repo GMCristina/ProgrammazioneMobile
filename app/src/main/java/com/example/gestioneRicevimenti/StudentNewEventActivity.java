@@ -279,7 +279,7 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
                         spinnerCorsiArray.add(value.getString("nome"));
                         spinnerIdCorsiArray.add(value.getString("id_corso"));
                     } catch (JSONException e) {
-                        // Something went wrong!
+
                     }
                 }
             }
@@ -356,20 +356,20 @@ public class StudentNewEventActivity extends AppCompatActivity implements View.O
             switch (s){
                 case "1":
                     Toast.makeText(StudentNewEventActivity.this, "Richiesta effettuata correttamente", Toast.LENGTH_LONG).show();
-                    break; // richiesta effettuata
+                    break;
 
                 case "-2":
                     Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: riprova (-2)", Toast.LENGTH_LONG).show();
-                    break; // errore query
+                    break;
 
                 case "-3":
                     Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: Hai già richiesto un ricevimento con questo docente in questo giorno", Toast.LENGTH_LONG).show();
-                    break; // errore query
+                    break;
 
 
                 case "":
                     Toast.makeText(StudentNewEventActivity.this, "Richiesta fallita: dati mancanti", Toast.LENGTH_LONG).show();
-                    break; // mancano dati
+                    break;
 
                 default:
                    break;
