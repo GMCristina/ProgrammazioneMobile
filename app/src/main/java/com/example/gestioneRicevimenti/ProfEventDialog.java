@@ -27,6 +27,7 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
     String status;
     String azione;
     ProgressBar pbDownload;
+    Boolean flagFine = false;
 
     public ProfEventDialog (@NonNull Context context) {
         super(context);
@@ -136,6 +137,7 @@ public class ProfEventDialog extends Dialog implements View.OnClickListener{
                 break;
 
             case R.id.btnFine:
+                flagFine = true;
                 dismiss();
                 break;
         }

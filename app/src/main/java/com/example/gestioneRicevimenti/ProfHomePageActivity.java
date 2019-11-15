@@ -89,11 +89,13 @@ public class ProfHomePageActivity extends AppCompatActivity {
                     sed.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
-                            DownloadSlotProf downloadSlot = new DownloadSlotProf();
-                            downloadSlot.execute(list);
-                            listAdapter.notifyDataSetChanged();
-                            sp.setSelection(0);
-                            listAdapter.notifyDataSetChanged();
+                            if(!((ProfEventDialog)dialog).flagFine){
+                                DownloadSlotProf downloadSlot = new DownloadSlotProf();
+                                downloadSlot.execute(list);
+                                listAdapter.notifyDataSetChanged();
+                                sp.setSelection(0);
+                                listAdapter.notifyDataSetChanged();
+                            }
                         }
                     });
                     sed.getDataAndShow(id_ric,status);
@@ -187,6 +189,9 @@ public class ProfHomePageActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        sp.setSelection(0);
+
         DownloadSlotProf download = new DownloadSlotProf();
         download.execute(list);
     }
